@@ -1,0 +1,20 @@
+<view class="searchBar">
+  <searchBar></searchBar>
+</view>
+<view class="catalog">
+  <scroll-view scroll-x class="cataItems" scroll-with-animation scroll-into-view="{{currentItem}}">
+    <view class="cataItem {{currentIndex === index ? 'active' : ''}}" wx:for="{{cataItems}}" bindtap="switchType" data-index="{{index}}" id="{{item.en}}">
+      {{item.name}}
+    </view>
+  </scroll-view>
+</view>
+<view class="goods">
+  <view class="good" wx:for="{{goods}}">
+    <view class="goodImg">
+      <image src="{{item.img_url}}" mode="widthFix"/>
+    </view>
+    <view class="goodName">{{item.name}}</view>
+    <view class="goodPrice">￥{{item.price}}</view>
+    <view class="salesVolume">{{item.salesVolume}}人付款</view>
+  </view>
+</view>
