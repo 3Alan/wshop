@@ -1,5 +1,4 @@
-<!--index.wxml-->
-<view class="container">
+<!-- <view class="container">
   <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
@@ -9,5 +8,23 @@
   </view>
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
+  </view>
+</view> -->
+<view class="banner-swiper">
+  <swiper class="swiper" autoplay indicator-dots interval="3000" duration="600" circular>
+    <swiper-item wx:for="{{banner}}" bindtap="goToDetail" data-id="{{item.id}}" wx:key="index">
+      <image src="{{item.image_url}}" mode="scaleToFill" />
+    </swiper-item>
+  </swiper>
+</view>
+<view class="content-container">
+  <view class="recommendList">
+    <view class="recommendTitle">{{recommendList.categoryName}}</view>
+    <view class="recommendItems">
+      <view class="recommendItem" wx:for="{{recommendList.items}}">
+        <image src="{{item.image_url}}" mode="widthFix"/>
+        <button class="recommendBtn">{{item.type}}</button>
+      </view>
+    </view>
   </view>
 </view>

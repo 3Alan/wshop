@@ -1,0 +1,4 @@
+<view class="container">
+  <i class="icon icon-search"></i>
+  <input type="text" placeholder="实战利器AJ34" class="searchInput" bindtap="goToSearch" disabled="{{!isAble}}"/>
+</view>

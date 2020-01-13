@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  align-items: center;
+  padding: 12rpx;
+  margin: 20rpx;
+  background: var(--grey-background);
+  color: var(--grey-fontcolor);
+}
+.icon-search {
+  margin-right: 10rpx;
+}
+.searchInput {
+  display: inline-block;
+  font-size: 28rpx;
+}
