@@ -18,7 +18,6 @@ Component({
    * 组件的初始数据
    */
   data: {
-
   },
 
   /**
@@ -28,5 +27,24 @@ Component({
     goToSearch() {
       wx.navigateTo({url: '/pages/search/search'});
     },
+    inputSearch(e) {
+      const inputValue = e.detail.value;
+      console.log(inputValue);
+      
+      // 通过输入的值去后台查询相关的商品
+      this.setData({
+        searchData: ['cp11', 'cpfm', 'cp3保罗'],
+      });
+    },
+    searchItemByName(e) {
+      const name = e.currentTarget.dataset.name;
+      // 根据name去搜索对应的商品
+    },
+    cancelSearch() {
+      wx.navigateBack();
+    },
+    focusEvent() {
+      this.triggerEvent('inputFocus');
+    }
   }
 })

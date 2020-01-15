@@ -1,4 +1,14 @@
 <view class="container">
-  <i class="icon icon-search"></i>
-  <input type="text" placeholder="实战利器AJ34" class="searchInput" bindtap="goToSearch" disabled="{{!isAble}}"/>
+  <view class="search-bar">
+    <i class="icon icon-search"></i>
+    <input type="text" placeholder="实战利器AJ34" class="searchInput" bindtap="{{isAble ? '' : 'goToSearch'}}" bindinput="inputSearch" disabled="{{!isAble}}" bindfocus="focusEvent"/>
+  </view>
+  <view class="cancel" bindtap="cancelSearch">取消</view>
+</view>
+<view class="search-result">
+  <view class="search-items">
+    <view class="search-item" wx:for="{{searchData}}" wx:key="index" bindtap="searchItemByName" data-name="{{item}}">
+      {{item}}
+    </view>
+  </view>
 </view>

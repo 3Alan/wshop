@@ -1,10 +1,14 @@
 .container {
   display: flex;
+}
+.search-bar {
+  display: flex;
   align-items: center;
   padding: 12rpx;
   margin: 20rpx;
   background: var(--grey-background);
   color: var(--grey-fontcolor);
+  flex: 1;
 }
 .icon-search {
   margin-right: 10rpx;
@@ -12,4 +16,22 @@
 .searchInput {
   display: inline-block;
   font-size: 28rpx;
+}
+.cancel {
+  width: 120rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20rpx 20rpx 20rpx 0;
+  box-sizing: border-box;
+  font-size: 28rpx;
+}
+.search-items {
+  padding: 0 20rpx;
+}
+.search-item {
+  width: 100%;
+  border-bottom: 1rpx solid var(--blue-color-border);
+  padding: 25rpx 0;
+  color: var(--orange-color-border);
 }
