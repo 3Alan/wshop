@@ -6,4 +6,6 @@ page {
   --grey-fontcolor: #b3b3b3;
   --orange-color: #e95323;
   --blue-color: #027ec3;
+  --blue-color-border: #e3f3fd;
+  --orange-color-border: #fca284;
 }

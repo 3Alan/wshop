@@ -3,13 +3,13 @@
 </view>
 <view class="catalog">
   <scroll-view scroll-x class="cataItems" scroll-with-animation scroll-into-view="{{currentItem}}">
-    <view class="cataItem {{currentIndex === index ? 'active' : ''}}" wx:for="{{cataItems}}" bindtap="switchType" data-index="{{index}}" id="{{item.en}}">
+    <view class="cataItem {{currentIndex === index ? 'active' : ''}}" wx:for="{{cataItems}}" bindtap="switchType" data-index="{{index}}" id="{{item.en}}" data-name="{{item.name}}">
       {{item.name}}
     </view>
   </scroll-view>
 </view>
 <view class="goods">
-  <view class="good" wx:for="{{goods}}">
+  <view class="good" wx:for="{{goods}}" bindtap="goodDetail" data-id="{{item.id}}">
     <view class="goodImg">
       <image src="{{item.img_url}}" mode="widthFix"/>
     </view>

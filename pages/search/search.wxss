@@ -1,1 +1,32 @@
-/* pages/search/search.wxss */
+.search-tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+.tag {
+  padding: 10rpx;
+  background: var(--grey-background);
+  color: black;
+  margin: 10rpx;
+  font-size: 28rpx;
+}
+.hot-search .title {
+  padding: 20rpx;
+  font-weight: bold;
+  font-size: 30rpx;
+}
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 20rpx;
+}
+.history-header .title{
+  padding: 20rpx;
+  font-weight: bold;
+  font-size: 30rpx;
+}
+.history-header .delete-history{
+  display: flex;
+  padding: 20rpx;
+  justify-content: center;
+  align-items: center;
+}
