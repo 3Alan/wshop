@@ -28,6 +28,13 @@ Page({
       hideTags: true,
     });
   },
+  goToSearchResult(e) {
+    const name = e.currentTarget.dataset.name;
+    wx.redirectTo({
+      url: `/pages/searchResult/searchResult?name=${name}`,
+    });
+    // 根据name去搜索对应的商品
+  },
 
   /**
    * 生命周期函数--监听页面加载

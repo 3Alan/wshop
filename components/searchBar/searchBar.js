@@ -7,6 +7,13 @@ Component({
     isAble: {
       type: Boolean,
       value: false,
+    },
+    hasCancel: {
+      type: Boolean,
+      value: true,
+    },
+    searchContent: {
+      type: String,
     }
   },
   options: {
@@ -36,8 +43,11 @@ Component({
         searchData: ['cp11', 'cpfm', 'cp3保罗'],
       });
     },
-    searchItemByName(e) {
+    goToSearchResult(e) {
       const name = e.currentTarget.dataset.name;
+      wx.redirectTo({
+        url: `/pages/searchResult/searchResult?name=${name}`,
+      });
       // 根据name去搜索对应的商品
     },
     cancelSearch() {

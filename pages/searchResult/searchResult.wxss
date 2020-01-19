@@ -1,29 +1,28 @@
-.cataItems {
-  height: 60rpx;
-  padding: 0 10rpx 10rpx;
-  width: 100%;
-  white-space: nowrap;
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
-.cataItem {
-  display: inline-block;
+.filterBar {
+  padding: 0 20rpx 20rpx 20rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  font-size: 28rpx;
+}
+.filterBar .filterItem{
+  flex: 1;
   padding: 0 30rpx;
-  line-height: 60rpx;
-  font-weight: bold;
+  display: flex;
+  justify-content: center;
   color: var(--grey-fontcolor);
-  position: relative;
 }
-.cataItem.active{
+.filterBar .filterItem.active{
   color: var(--orange-color);
 }
-.cataItem.active:after{
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 23rpx;
-  right: 18rpx;
-  height: 6rpx;
-  background-color: var(--blue-color);
-  border-radius: 4rpx;
+.goodsContainer {
+  overflow: scroll;
+  flex: 1;
 }
 .good {
   padding: 1rpx;
