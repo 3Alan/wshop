@@ -1,4 +1,4 @@
-.container {
+.searchBarContainer {
   display: flex;
 }
 .search-bar {
@@ -16,6 +16,7 @@
 .searchInput {
   display: inline-block;
   font-size: 28rpx;
+  width: 100%;
 }
 .cancel {
   width: 120rpx;

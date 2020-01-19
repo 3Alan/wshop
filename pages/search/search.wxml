@@ -10,7 +10,7 @@
       </view>
     </view>
     <view class="search-tags">
-      <view class="tag" wx:for="{{historySearch}}" bindtap="searchItem" wx:key="index">
+      <view class="tag" wx:for="{{historySearch}}" bindtap="goToSearchResult" wx:key="index" data-name="{{item}}">
         {{item}}
       </view>
     </view>
@@ -18,7 +18,7 @@
   <view class="hot-search">
     <view class="title">热门搜索</view>
     <view class="search-tags">
-      <view class="tag" wx:for="{{hotSearch}}" bindtap="searchItem" wx:key="index">{{item}}</view>
+      <view class="tag" wx:for="{{hotSearch}}" bindtap="goToSearchResult" wx:key="index" data-name="{{item}}">{{item}}</view>
     </view>
   </view>
 </view>
