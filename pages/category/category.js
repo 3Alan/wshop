@@ -90,9 +90,10 @@ Page({
     
   },
 
-  goodDetail () {
+  goodDetail (e) {
     const goodId = e.currentTarget.dataset.id;
     // 通过id跳转到对应的商品详情页面
+    wx.navigateTo({url: `/pages/goodDetail/goodDetail?id=${goodId}`});
   },
 
   /**

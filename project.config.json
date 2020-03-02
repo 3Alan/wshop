@@ -61,6 +61,20 @@
 					"id": -1,
 					"name": "pages/category/category",
 					"pathName": "pages/category/category",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/user/user",
+					"pathName": "pages/user/user",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/goodDetail/goodDetail",
+					"pathName": "pages/goodDetail/goodDetail",
 					"scene": null
 				}
 			]

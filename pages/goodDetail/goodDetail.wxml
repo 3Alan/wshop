@@ -1,0 +1,83 @@
+<view class="page-container">
+  <view class="content-container">
+    <view class="banner-swiper">
+      <swiper class="swiper" indicator-dots>
+        <swiper-item wx:for="{{banner}}" bindtap="previewDetail" data-id="{{item.id}}" wx:key="index">
+          <image src="{{item.image_url}}" mode="scaleToFill" />
+        </swiper-item>
+      </swiper>
+    </view>
+    <view class="good-name">Air Jordan sladjfladjlfkjasjflkdjasklf</view>
+    <view class="good-price">
+      <text>￥</text>
+      1986
+    </view>
+    <view class="cell" bindtap="showSizeBox">
+      <text>选择尺码</text>
+      <view class="right-content">
+        <text class="righ-content-text">{{size}}</text>
+        <i class="icon icon-search"></i>
+      </view>
+    </view>
+    <view class="cell">
+      <text>商品评价（35）</text>
+      <view class="right-content">
+        <text class="righ-content-text">98%好评</text>
+        <i class="icon icon-search"></i>
+      </view>
+    </view>
+    <view class="purchase-rules">
+      <view class="rules-title">购物须知</view>
+      <view class="paragraph">
+        <text class="emphasis">关于商品:</text>
+        由于生产批次、场地的不同以及商品更新升级和品牌方图片调整，
+      实物的材质、外观细节、配件和包装等可能与商品图片存在细微差距，具体请以收到的实物为准。如商品上绑
+      有调包扣或贴有防伪贴纸，请您收到货后先确认商品无误再进行拆除。
+      </view>
+      <view class="paragraph">
+        <text class="emphasis">关于色差:</text>
+        因手机、电脑等显示设备的色彩偏差和个人对颜色的理解等不同，导致事物可能会与照片存在一定色差，请您以收到
+        的实物为准。
+      </view>
+      <view class="paragraph">
+        <text class="emphasis">关于气味:</text>
+        新商品可能会存在一些气味，这些气味来自材料、胶水等，您可以将商品放置在通风处一段时间，减少
+        其为后再使用。
+      </view>
+      <view class="paragraph">
+        <text class="emphasis">关于尺码:</text>
+        由于品牌尺码标准、产品款型及测量方法不同，商品实际尺寸可能会存在些许误差，均属于正常情况。
+      </view>
+      <view class="paragraph">
+        <text class="emphasis">保养说明:</text>
+        请定期清洁商品，针对不同材质与工艺进行清洁与保养，避免阳光暴晒以免引起老化、变形、褪色及断裂。
+      </view>
+      <view class="paragraph">
+        <text class="emphasis">自然氧化:</text>
+        部分商品由于生产年代久远以及鞋面和鞋底等处的材质特殊与空气长期接触后会发生自然氧化实属正常现象无法避免
+      </view>
+    </view>
+  </view>
+  <view class="bottomBtn" bindtap="collect">
+    <view class="collect">
+      <i class="icon icon-search"></i>
+      收藏
+    </view>
+    <view class="purchase" bindtap="purchase">立即购买</view>
+  </view>
+  <view class="box-mask" wx:if="{{showSizeBox}}" bindtap="closeSizeBox"></view>
+  <view class="size-box" wx:if="{{showSizeBox}}">
+    <view class="good-detail">
+      <image src="https://c.static-nike.com/a/images/f_auto/q_auto/t_PDP_864_v1/10900ec8-c7a3-42d6-8256-02a74fae5970/kyrie-6-ep-%E7%94%B7%E5%AD%90%E7%AF%AE%E7%90%83%E9%9E%8B-NxC374.jpg" />
+      <view class="box-good-price">
+        <text>￥</text>1499
+      </view>
+      <view class="close-box" bindtap="closeSizeBox">
+        <i class="icon icon-search"></i>
+      </view>
+    </view>
+    <view class="size">
+      <view class="size-botton {{currentSizeIndex === index ? 'size-selected' : ''}}" wx:for="{{sizeList}}" data-index="{{index}}" bindtap="chooseSize">{{item}}</view>
+    </view>
+  </view>
+</view>

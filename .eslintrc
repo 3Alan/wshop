@@ -1,0 +1,24 @@
+{
+  "extends": "airbnb-base",
+  "globals": {
+    "App": true,
+    "Page": true,
+    "Component": true,
+    "Behavior": true,
+    "getApp": true,
+    "getCurrentPages": true,
+    "wx": true,
+    "__wxConfig": false
+  },
+  "rules": {
+    "no-console": ["warn", {
+      "allow": ["info", "warn", "error"]
+    }],
+    "no-unused-vars": ["error", { "varsIgnorePattern": "Promise|regeneratorRuntime" }],
+    "max-len": "off",
+    "no-underscore-dangle": "off",
+    "no-plusplus": 0,
+    "no-mixed-operators": "off",
+    "no-nested-ternary": "off"
+  }
+}

@@ -55,15 +55,24 @@ Page({
       hideContainer: true,
     })
   },
+  goodDetail (e) {
+    const goodId = e.currentTarget.dataset.id;
+    // 通过id跳转到对应的商品详情页面
+    wx.navigateTo({url: `/pages/goodDetail/goodDetail?id=${goodId}`});
+  },
+
   sortByXl(a, b) {
     return b.salesVolume - a.salesVolume;
   },
+
   sortByJg(a, b) {
     return b.price - a.price;
   },
+
   sortByXp(a, b) {
     return moment(b.shelfTime) - moment(a.shelfTime);
   },
+  
   switchFilter(e) {
     const index = e.currentTarget.dataset.index;
     console.log(index);
