@@ -9,4 +9,6 @@ page {
   --blue-color: #027ec3;
   --blue-color-border: #e3f3fd;
   --orange-color-border: #fca284;
+  --white-color-border: #f2f2f2;
+  --grey-font: #888;
 }

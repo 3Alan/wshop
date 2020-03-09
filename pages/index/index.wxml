@@ -21,7 +21,7 @@
   <view class="recommendList">
     <view class="recommendTitle">{{recommendList.categoryName}}</view>
     <view class="recommendItems">
-      <view class="recommendItem" wx:for="{{recommendList.items}}">
+      <view class="recommendItem" wx:for="{{recommendList.items}}" wx:key="index">
         <image src="{{item.image_url}}" mode="widthFix"/>
         <button class="recommendBtn">{{item.type}}</button>
       </view>

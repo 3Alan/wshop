@@ -1,16 +1,16 @@
 <view class="page-container">
   <view class="content-container">
     <view class="banner-swiper">
-      <swiper class="swiper" indicator-dots>
-        <swiper-item wx:for="{{banner}}" bindtap="previewDetail" data-id="{{item.id}}" wx:key="index">
-          <image src="{{item.image_url}}" mode="scaleToFill" />
+      <swiper class="swiper" indicator-dots circular>
+        <swiper-item wx:for="{{banner}}" bindtap="previewDetail" data-id="{{item}}" wx:key="index">
+          <image src="{{item}}" mode="scaleToFill" />
         </swiper-item>
       </swiper>
     </view>
-    <view class="good-name">Air Jordan sladjfladjlfkjasjflkdjasklf</view>
+    <view class="good-name">{{goodName}}</view>
     <view class="good-price">
       <text>￥</text>
-      1986
+      {{goodPrice}}
     </view>
     <view class="cell" bindtap="showSizeBox">
       <text>选择尺码</text>
@@ -68,7 +68,7 @@
   <view class="box-mask" wx:if="{{showSizeBox}}" bindtap="closeSizeBox"></view>
   <view class="size-box" wx:if="{{showSizeBox}}">
     <view class="good-detail">
-      <image src="https://c.static-nike.com/a/images/f_auto/q_auto/t_PDP_864_v1/10900ec8-c7a3-42d6-8256-02a74fae5970/kyrie-6-ep-%E7%94%B7%E5%AD%90%E7%AF%AE%E7%90%83%E9%9E%8B-NxC374.jpg" />
+      <image src="{{banner[0]}}" />
       <view class="box-good-price">
         <text>￥</text>1499
       </view>
@@ -77,7 +77,7 @@
       </view>
     </view>
     <view class="size">
-      <view class="size-botton {{currentSizeIndex === index ? 'size-selected' : ''}}" wx:for="{{sizeList}}" data-index="{{index}}" bindtap="chooseSize">{{item}}</view>
+      <view class="size-botton {{currentSizeIndex === index ? 'size-selected' : ''}}" wx:for="{{sizeList}}" data-index="{{index}}" bindtap="chooseSize" wx:key="index">{{item}}</view>
     </view>
   </view>
 </view>

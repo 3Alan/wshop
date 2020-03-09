@@ -10,7 +10,7 @@
 }
 .nick-name {
   font-weight: bold;
-  font-size: 45rpx;
+  font-size: 40rpx;
   margin-left: 40rpx;
   flex: 1;
 }
@@ -23,6 +23,8 @@
 .avatar {
   width: 150rpx;
   height: 150rpx;
+  border: 1rpx solid var(--orange-color-border);
+  border-radius: 50%;
 }
 .avatar image {
   width: 100%;
@@ -39,6 +41,15 @@
   border-bottom: 1rpx solid #f2f2f2;
   display: flex;
   justify-content: space-between;
-  font-weight: bold;
   font-size: 36rpx;
+}
+.logout {
+  padding: 25rpx 0;
+  display: flex;
+  justify-content: center;
+  background: var(--blue-color);
+  color: #f2f2f2;
+  border-radius: 3rpx;
+  margin-top: 120rpx;
+  font-size: 32rpx;
 }

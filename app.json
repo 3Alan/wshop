@@ -6,7 +6,9 @@
     "pages/search/search",
     "pages/searchResult/searchResult",
     "pages/user/user",
-    "pages/goodDetail/goodDetail"
+    "pages/goodDetail/goodDetail",
+    "pages/login/login",
+    "pages/submitOrder/submitOrder"
   ],
   "window": {
     "backgroundTextStyle": "light",

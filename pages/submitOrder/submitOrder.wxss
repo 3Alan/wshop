@@ -1,0 +1,101 @@
+.page-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.content-container {
+  flex: 1;
+  overflow: scroll;
+  font-size: 28rpx;
+  background: var(--white-color-border);
+}
+.content-container .add-address {
+  padding: 50rpx 40rpx;
+  border-bottom: 15rpx solid var(--white-color-border);
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.content-container .receiving-address {
+  display: inline-flex;
+  padding: 20rpx;
+  background: #fff;
+}
+.content-container .receiving-address .location-icon {
+  display: flex;
+  align-items: center;
+  padding-right: 30rpx;
+}
+.receiving-address .address-info .receiver {
+  font-size: 32rpx;
+  margin-right: 20rpx;
+}
+.receiving-address .address-info .tel {
+  color: #ccc;
+}
+.receiving-address .address-info .address {
+  margin-top: 15rpx;
+  display: block;
+}
+.good-card {
+  background: #fff;
+  padding: 20rpx 30rpx 20rpx 20rpx;
+  border-top: 20rpx solid var(--white-color-border);
+  border-bottom: 15rpx solid var(--white-color-border);
+  display: flex;
+}
+.good-card .good-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.good-card .good-info .good-info-top {
+  font-size: 32rpx;
+  color: #888;
+}
+.good-card .good-info .good-info-bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10rpx;
+}
+.good-card .good-info .good-info-bottom .good-price {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.good-card image {
+  width: 200rpx;
+  height: 200rpx;
+  margin-right: 15rpx;
+}
+.bottom-container {
+  width: 100%;
+  display: flex;
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+  border-top: 1rpx solid var(--white-color-border);
+  justify-content: space-between;
+  padding: 20rpx;
+  box-sizing: border-box;
+  font-size: 30rpx;
+}
+.bottom-container .payments {
+  color: var(--orange-color);
+  font-weight: bold;
+  font-size: 28rpx;
+}
+.bottom-container .payments .price {
+  font-size: 36rpx;
+}
+.submit-order {
+  width: 40%;
+  background-color: var(--blue-color);
+  padding: 25rpx;
+  text-align: center;
+  color: #fff;
+  border-radius: 8rpx;
+  font-size: 32rpx;
+}

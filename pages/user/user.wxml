@@ -1,8 +1,8 @@
 <view class="container">
   <view class="user-info">
     <view class="avatar"><image src="../../images/me_selected.png" /></view>
-    <view class="nick-name" wx:if="{{isLogin}}">Alan</view>
-    <view class="login" wx:if="{{!isLogin}}">登录/注册</view>
+    <view class="nick-name" wx:if="{{isLogin}}">{{username}}</view>
+    <view class="login" wx:if="{{!isLogin}}" bindtap="goToLogin">登录/注册</view>
     <view class="user-homepage">
       个人主页
       <i class="icon icon-search"></i>
@@ -15,5 +15,8 @@
   <view class="cell">
     <text>我的收藏</text>
     <i class="icon icon-search"></i>
+  </view>
+  <view class="logout" bindtap="logout" wx:if="{{isLogin}}">
+    退出登录
   </view>
 </view>

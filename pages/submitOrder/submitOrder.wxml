@@ -1,0 +1,42 @@
+<view class="page-container">
+  <view class="content-container">
+    <view class="add-address" bindtap="addAddress" wx:if="{{!hasAddress}}">
+      <view class="text">
+        <i class="icon icon-search" />
+        添加收货地址
+      </view>
+      <view class="arrow">
+        <i class="icon icon-search" />
+      </view>
+    </view>
+    <view class="receiving-address" wx:if="{{!hasAddress}}">
+      <view class="location-icon">
+        <i class="icon icon-search" />
+      </view>
+      <view class="address-info">
+        <text class="receiver">Alan</text>
+        <text class="tel">15489344720</text>
+        <text class="address">江西省宜春市高安市瑞州街道桥北路粮食局dfdasfadfads车队</text>
+      </view>
+    </view>
+    <view class="good-card">
+      <image src="https://c.static-nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/71584fa5-f265-4967-95b1-8cc2f6e09e78/air-jordan-1-mid-%E7%94%B7%E5%AD%90%E8%BF%90%E5%8A%A8%E9%9E%8B-DQ5wwd.jpg" />
+      <view class="good-info">
+        <view class="good-info-top">
+          <view class="good-name">Air Jordan 1 Mid</view>
+        </view>
+        <view class="good-info-bottom">
+          <view class="good-size">42码</view>
+          <view class="good-price">￥987</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="bottom-container" bindtap="collect">
+    <view class="payments">
+      实付款:￥
+      <text class="price">987.00</text>
+    </view>
+    <view class="submit-order" bindtap="submitOrder">提交订单</view>
+  </view>
+</view>
