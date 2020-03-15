@@ -8,10 +8,11 @@
   overflow: scroll;
   font-size: 28rpx;
   background: var(--white-color-border);
+  padding: 15rpx;
 }
 .content-container .add-address {
   padding: 50rpx 40rpx;
-  border-bottom: 15rpx solid var(--white-color-border);
+  border-radius: 10rpx;
   display: flex;
   justify-content: space-between;
   background: #fff;
@@ -20,13 +21,24 @@
 }
 .content-container .receiving-address {
   display: inline-flex;
-  padding: 20rpx;
+  padding: 30rpx;
   background: #fff;
+  border-radius: 10rpx;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 10rpx 0;
+}
+.receiving-address .address-info {
+  flex: 1;
 }
 .content-container .receiving-address .location-icon {
   display: flex;
   align-items: center;
   padding-right: 30rpx;
+}
+.content-container .receiving-address .arrow-icon {
+  display: flex;
+  align-items: center;
 }
 .receiving-address .address-info .receiver {
   font-size: 32rpx;
@@ -42,9 +54,10 @@
 .good-card {
   background: #fff;
   padding: 20rpx 30rpx 20rpx 20rpx;
-  border-top: 20rpx solid var(--white-color-border);
-  border-bottom: 15rpx solid var(--white-color-border);
   display: flex;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  margin: 10rpx 0;
 }
 .good-card .good-info {
   flex: 1;
@@ -59,7 +72,7 @@
 .good-card .good-info .good-info-bottom {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10rpx;
+  margin-bottom: 5rpx;
 }
 .good-card .good-info .good-info-bottom .good-price {
   font-size: 32rpx;
@@ -72,7 +85,6 @@
 }
 .bottom-container {
   width: 100%;
-  display: flex;
   height: 120rpx;
   display: flex;
   align-items: center;
@@ -90,12 +102,125 @@
 .bottom-container .payments .price {
   font-size: 36rpx;
 }
+.bottom-btn {
+  width: 50%;
+  margin-right: 20rpx;
+}
 .submit-order {
-  width: 40%;
+  width: 100% !important;
   background-color: var(--blue-color);
   padding: 25rpx;
   text-align: center;
   color: #fff;
-  border-radius: 8rpx;
   font-size: 32rpx;
+}
+.order-detail {
+  background: #fff;
+  padding: 0 20rpx 20rpx;
+  margin: 20rpx 0;
+  border-radius: 10rpx;
+}
+.order-detail .detail-title {
+  font-size: 32rpx;
+  position: relative;
+  padding: 20rpx 30rpx;
+  font-weight: bold;
+}
+.order-detail .detail-title::before{
+  font-size: 32rpx;
+  position: absolute;
+  content: '';
+  background: var(--blue-color);
+  width: 6rpx;
+  height: 34rpx;
+  left: 0;
+  top: 50%;
+  margin-top: -17rpx;
+}
+.order-detail .detail-cell {
+  padding: 15rpx 50rpx;
+  display: flex;
+}
+.order-detail .detail-cell .cell-title {
+  width: 150rpx;
+}
+.order-detail .detail-cell .cell-content {
+  flex: 1;
+}
+.box-mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.5;
+  overflow: hidden;
+  z-index: 99;
+}
+.pay-modal {
+  width: 520rpx;
+  z-index: 199;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -260rpx;
+  margin-top: -300rpx;
+  border-radius: 20rpx;
+  font-size: 28rpx;
+}
+.modal-content {
+  padding: 30rpx;
+}
+.modal-title {
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: bold;
+  border-bottom: 1rpx solid #f2f2f2;
+  padding-bottom: 10rpx;
+  padding: 20rpx;
+}
+.modal-title i{
+  position: absolute;
+  right: 20rpx;
+}
+.modal-cell {
+  display: flex;
+  padding: 10rpx 0;
+}
+.modal-cell .title{
+  width: 150rpx;
+}
+.modal-cell .content{
+  text-align: right;
+  flex: 1;
+}
+.modal-cell .content.price{
+  color: var(--orange-color);
+}
+.operation-btn {
+  margin-top: 30rpx;
+  color: #fff;
+  width: 250rpx;
+  height: 80rpx;
+  font-size: 28rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15rpx;
+  background: linear-gradient(left, var(--light-blue-color), var(--blue-color) 100%);
+  background: -moz-linear-gradient(left, var(--light-blue-color), var(--blue-color) 100%);
+  background: -webkit-linear-gradient(left, var(--light-blue-color), var(--blue-color) 100%);
+}
+.operation {
+  display: flex;
+  justify-content: center;
+}
+.operation-btn.disabled{
+  background: #ccc;
+}
+.tips {
+  font-size: 24rpx;
+  color: var(--orange-color);
 }

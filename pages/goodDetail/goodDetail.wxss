@@ -52,13 +52,14 @@
 .collect {
   padding-left: 5rpx;
 }
+.button {
+  margin-right: 50rpx;
+}
 .purchase {
   width: 60%;
   background-color: var(--blue-color);
   padding: 25rpx;
-  text-align: center;
   color: #fff;
-  border-radius: 8rpx;
   font-size: 32rpx;
 }
 .cell {
@@ -87,14 +88,11 @@
 .emphasis {
   font-weight: bold;
 }
-.size-box {
-  display: flex;
-  flex-direction: column;
-}
 .size-box .good-detail {
   padding: 30rpx;
   display: flex;
   align-items: center;
+  background: #fff;
 }
 .size-box .good-detail text {
   font-size: 28rpx;
@@ -114,7 +112,6 @@
   display: flex;
   flex-wrap: wrap;
   padding: 35rpx 35rpx 0 35rpx;
-  flex: 1;
   overflow: scroll;
 }
 .size-box .size .size-botton{
@@ -142,6 +139,8 @@
   z-index: 999;
 }
 .size-box {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 60%;
   position: fixed;
@@ -149,5 +148,5 @@
   left: 0;
   overflow: hidden;
   z-index: 999;
-  background: #fff;
+  background: #f2f2f2;
 }

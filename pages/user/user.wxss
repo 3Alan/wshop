@@ -41,7 +41,7 @@
   border-bottom: 1rpx solid #f2f2f2;
   display: flex;
   justify-content: space-between;
-  font-size: 36rpx;
+  font-size: 32rpx;
 }
 .logout {
   padding: 25rpx 0;
@@ -49,7 +49,7 @@
   justify-content: center;
   background: var(--blue-color);
   color: #f2f2f2;
-  border-radius: 3rpx;
+  border-radius: 5rpx;
   margin-top: 120rpx;
   font-size: 32rpx;
 }

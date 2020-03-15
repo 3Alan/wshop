@@ -25,6 +25,21 @@ Page({
       url: '/pages/login/login',
     });
   },
+  goToOrderList() {
+    wx.navigateTo({
+      url: '/pages/orderList/orderList',
+    });
+  },
+  goToMyCollection() {
+    wx.navigateTo({
+      url: '/pages/myCollection/myCollection',
+    });
+  },
+  goToAddressList() {
+    wx.navigateTo({
+      url: '/pages/addressList/addressList',
+    });
+  },
 
   /**
    * 生命周期函数--监听页面加载

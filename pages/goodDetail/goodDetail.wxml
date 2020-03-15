@@ -10,7 +10,7 @@
     <view class="good-name">{{goodName}}</view>
     <view class="good-price">
       <text>￥</text>
-      {{goodPrice}}
+      {{goodPrice}}.00
     </view>
     <view class="cell" bindtap="showSizeBox">
       <text>选择尺码</text>
@@ -63,21 +63,23 @@
       <i class="icon icon-search"></i>
       收藏
     </view>
-    <view class="purchase" bindtap="purchase">立即购买</view>
+    <view class="button">
+      <button class="btn purchase" bindtap="purchase">立即购买</button>
+    </view>
   </view>
   <view class="box-mask" wx:if="{{showSizeBox}}" bindtap="closeSizeBox"></view>
   <view class="size-box" wx:if="{{showSizeBox}}">
     <view class="good-detail">
       <image src="{{banner[0]}}" />
       <view class="box-good-price">
-        <text>￥</text>1499
+        <text>￥</text>{{goodPrice}}.00
       </view>
       <view class="close-box" bindtap="closeSizeBox">
         <i class="icon icon-search"></i>
       </view>
     </view>
     <view class="size">
-      <view class="size-botton {{currentSizeIndex === index ? 'size-selected' : ''}}" wx:for="{{sizeList}}" data-index="{{index}}" bindtap="chooseSize" wx:key="index">{{item}}</view>
+      <view class="size-botton {{currentSizeIndex === index ? 'size-selected' : ''}}" wx:for="{{goodSizeList}}" data-index="{{index}}" bindtap="chooseSize" wx:key="index">{{item}}</view>
     </view>
   </view>
 </view>

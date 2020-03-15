@@ -3,17 +3,17 @@
     <view class="avatar"><image src="../../images/me_selected.png" /></view>
     <view class="nick-name" wx:if="{{isLogin}}">{{username}}</view>
     <view class="login" wx:if="{{!isLogin}}" bindtap="goToLogin">登录/注册</view>
-    <view class="user-homepage">
-      个人主页
-      <i class="icon icon-search"></i>
-    </view>
   </view>
-  <view class="cell">
+  <view class="cell" bindtap="goToOrderList">
     <text>订单中心</text>
     <i class="icon icon-search"></i>
   </view>
-  <view class="cell">
+  <view class="cell" bindtap="goToMyCollection">
     <text>我的收藏</text>
+    <i class="icon icon-search"></i>
+  </view>
+  <view class="cell" bindtap="goToAddressList">
+    <text>地址管理</text>
     <i class="icon icon-search"></i>
   </view>
   <view class="logout" bindtap="logout" wx:if="{{isLogin}}">

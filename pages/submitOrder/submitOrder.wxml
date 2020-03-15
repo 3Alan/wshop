@@ -9,34 +9,88 @@
         <i class="icon icon-search" />
       </view>
     </view>
-    <view class="receiving-address" wx:if="{{!hasAddress}}">
+    <view class="receiving-address" wx:if="{{hasAddress}}">
       <view class="location-icon">
         <i class="icon icon-search" />
       </view>
       <view class="address-info">
-        <text class="receiver">Alan</text>
-        <text class="tel">15489344720</text>
-        <text class="address">江西省宜春市高安市瑞州街道桥北路粮食局dfdasfadfads车队</text>
+        <text class="receiver">{{addressDetail.receiver}}</text>
+        <text class="tel">{{addressDetail.tel}}</text>
+        <text class="address">{{addressDetail.address}}</text>
+      </view>
+      <view class="arrow-icon">
+        <i class="icon icon-search" />
       </view>
     </view>
     <view class="good-card">
-      <image src="https://c.static-nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/71584fa5-f265-4967-95b1-8cc2f6e09e78/air-jordan-1-mid-%E7%94%B7%E5%AD%90%E8%BF%90%E5%8A%A8%E9%9E%8B-DQ5wwd.jpg" />
+      <image src="{{goodDetail.goodImgList[0]}}" />
       <view class="good-info">
         <view class="good-info-top">
-          <view class="good-name">Air Jordan 1 Mid</view>
+          <view class="good-name">{{goodDetail.name}}</view>
         </view>
         <view class="good-info-bottom">
-          <view class="good-size">42码</view>
-          <view class="good-price">￥987</view>
+          <view class="good-size">{{size}}码</view>
+          <view class="good-price">￥{{goodDetail.price}}</view>
         </view>
       </view>
     </view>
+    <view class="order-detail" wx:if="{{orderDetail.status}}">
+      <view class="detail-title">订单信息</view>
+      <view class="detail-cell">
+        <text class="cell-title">姓名：</text>
+        <text class="cell-content">{{orderDetail.receiver}}</text>
+      </view>
+      <view class="detail-cell">
+        <text class="cell-title">手机号：</text>
+        <text class="cell-content">{{orderDetail.tel}}</text>
+      </view>
+      <view class="detail-cell">
+        <text class="cell-title">收货地址：</text>
+        <text class="cell-content">{{orderDetail.address}}</text>
+      </view>
+      <view class="detail-cell">
+        <text class="cell-title">订单号：</text>
+        <text class="cell-content">{{orderDetail.orderId}}</text>
+      </view>
+      <view class="detail-cell">
+        <text class="cell-title">创建时间：</text>
+        <text class="cell-content">{{orderDetail.time}}</text>
+      </view>
+    </view>
   </view>
-  <view class="bottom-container" bindtap="collect">
+  <view class="bottom-container">
     <view class="payments">
       实付款:￥
-      <text class="price">987.00</text>
+      <text class="price">{{goodDetail.price}}.00</text>
     </view>
-    <view class="submit-order" bindtap="submitOrder">提交订单</view>
+    <view class="bottom-btn">
+      <button class="btn submit-order" wx:if="{{orderDetail.status !== 2}}" bindtap="{{!orderDetail.status ? 'submitOrder' : 'checkUserAccount'}}">
+        {{!orderDetail.status ? '提交订单' : '支付'}}
+      </button>
+    </view>
+  </view>
+  <view class="box-mask" wx:if="{{showPayModal}}"></view>
+  <view class="pay-modal" wx:if="{{showPayModal}}">
+    <view class="modal-title">
+      <text>支付</text>
+      <i class="icon icon-search" bindtap="closePayModal"></i>
+    </view>
+    <view class="modal-content">
+      <view class="modal-cell">
+        <view class="title">余额</view>
+        <view class="content">￥{{balance}}</view>
+      </view>
+      <view class="modal-cell">
+        <view class="title">需要支付</view>
+        <view class="content price">￥{{goodDetail.price}}</view>
+      </view>
+      <view class="tips" wx:if="{{needRecharge}}">
+        您的账户余额不足，请联系管理员进行充值
+      </view>
+      <view class="operation">
+        <view class="operation-btn {{needRecharge ? 'disabled' : ''}}" bindtap="{{needRecharge ? '' : 'goToPay'}}">确认支付</view>
+      </view>
+    </view>
+    
   </view>
 </view>

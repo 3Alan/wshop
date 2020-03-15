@@ -8,7 +8,11 @@
     "pages/user/user",
     "pages/goodDetail/goodDetail",
     "pages/login/login",
-    "pages/submitOrder/submitOrder"
+    "pages/submitOrder/submitOrder",
+    "pages/addAddress/addAddress",
+    "pages/orderList/orderList",
+    "pages/myCollection/myCollection",
+    "pages/addressList/addressList"
   ],
   "window": {
     "backgroundTextStyle": "light",

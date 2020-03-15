@@ -1,0 +1,49 @@
+.container {
+  background: var(--grey-background);
+  height: 100%;
+}
+.info-cell {
+  padding: 30rpx 20rpx;
+  display: inline-flex;
+  justify-content: space-between;
+  border-bottom: 1rpx solid var(--white-color-border);
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 28rpx;
+  background: #fff;
+}
+.info-cell .cell-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  width: 200rpx;
+}
+.info-cell .input-content {
+  flex: 1;
+}
+.info-cell .address {
+  margin-right: 20rpx;
+  display: inline-block;
+}
+.address-detail {
+  background: #fff;
+  padding: 30rpx 40rpx;
+  font-size: 28rpx;
+  width: 100%;
+  box-sizing: border-box;
+  height: 200rpx;
+  margin-bottom: 60rpx;
+}
+.address-detail textarea {
+  height: 100%;
+}
+.save-btn {
+  padding: 25rpx 0;
+  display: flex;
+  justify-content: center;
+  background: var(--blue-color);
+  color: #f2f2f2;
+  border-radius: 3rpx;
+  margin-top: 120rpx;
+  font-size: 32rpx;
+  margin: 0 20rpx;
+}

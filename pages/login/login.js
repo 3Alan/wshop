@@ -69,10 +69,6 @@ Page({
           showCancel: false,
         });
       }
-
-      
-      console.log(loginRes);
-      
     } catch (error) {
       wx.hideLoading();
       await wx.showToast({

@@ -69,6 +69,8 @@ Page({
       if (!(Res.statusCode === 200 && Res.data)) {
         throw new errors.ValidateError("获取商品列表失败");
       }
+      console.log(Res);
+      
       wx.hideLoading();
       const { goodList } = Res.data;
       this.setData({
@@ -78,7 +80,7 @@ Page({
     } catch (error) {
       wx.hideLoading();
       await wx.showToast({
-        title: error.name === "ValidateError" ? error.message : "出错了请重试",
+        title: error.name === "ValidateError" ? error.message : "请重新登录",
         icon: "none",
         duration: 2000
       });
