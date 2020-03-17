@@ -1,6 +1,8 @@
-import wx from "../../lib/wx";
+const Api = require("../../utils/api");
+const wx = require("../../lib/wx");
+const errors = require("../../utils/error");
 
-// pages/orderList/orderList.js
+const app = getApp();
 Page({
 
   /**
@@ -8,87 +10,89 @@ Page({
    */
   data: {
     currentIndex: 0,
-    orderList: [
-      {
-        name: 'Air Jordan 1 Midsdlafkjladsjfladj',
-        size: '42',
-        price: '987',
-        img:'https://c.static-nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/71584fa5-f265-4967-95b1-8cc2f6e09e78/air-jordan-1-mid-%E7%94%B7%E5%AD%90%E8%BF%90%E5%8A%A8%E9%9E%8B-DQ5wwd.jpg'
-      },
-      {
-        name: 'Air Jordan 1 Mid',
-        size: '42',
-        price: '9123',
-        img:'https://c.static-nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/71584fa5-f265-4967-95b1-8cc2f6e09e78/air-jordan-1-mid-%E7%94%B7%E5%AD%90%E8%BF%90%E5%8A%A8%E9%9E%8B-DQ5wwd.jpg'
-      },
-      {
-        name: 'Air Jordan 1 Mid',
-        size: '32',
-        price: '123',
-        img:'https://c.static-nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/71584fa5-f265-4967-95b1-8cc2f6e09e78/air-jordan-1-mid-%E7%94%B7%E5%AD%90%E8%BF%90%E5%8A%A8%E9%9E%8B-DQ5wwd.jpg'
-      },
-      {
-        name: 'Air Jordan 1 Mid',
-        size: '32',
-        price: '123',
-        img:'https://c.static-nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/71584fa5-f265-4967-95b1-8cc2f6e09e78/air-jordan-1-mid-%E7%94%B7%E5%AD%90%E8%BF%90%E5%8A%A8%E9%9E%8B-DQ5wwd.jpg'
-      },
-      {
-        name: 'Air Jordan 1 Mid',
-        size: '32',
-        price: '123',
-        img:'https://c.static-nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/71584fa5-f265-4967-95b1-8cc2f6e09e78/air-jordan-1-mid-%E7%94%B7%E5%AD%90%E8%BF%90%E5%8A%A8%E9%9E%8B-DQ5wwd.jpg'
-      },
-      {
-        name: 'Air Jordan 1 Mid',
-        size: '32',
-        price: '123',
-        img:'https://c.static-nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/71584fa5-f265-4967-95b1-8cc2f6e09e78/air-jordan-1-mid-%E7%94%B7%E5%AD%90%E8%BF%90%E5%8A%A8%E9%9E%8B-DQ5wwd.jpg'
-      },
-    ],
     cataItems: [
       {
         name: '待付款',
-        status: '0'
+        status: 1
       },
       {
         name: '待发货',
-        status: '1'
+        status: 2
       },
       {
         name: '待收货',
-        status: '2'
+        status: 3
       },
       {
         name: '待评价',
-        status: '3'
+        status: 4
       },
       {
         name: '历史订单',
-        status: '4'
+        status: 5
       },
     ],
+    status: 1,
   },
 
-  switchType(e) {
+  async switchType(e) {
     const currentIndex = e.currentTarget.dataset.index;
+    const status = e.currentTarget.dataset.status;
     this.setData({
+      status,
       currentIndex,
     });
+    await this.getOrderList();
     // 这里请求接口：通过name查询该分类下的所有商品信息
   },
 
-  goToPay() {
+  handleOrder(e) {
+    const orderId = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/submitOrder/submitOrder'
+      url: `/pages/submitOrder/submitOrder?orderId=${orderId}`
     });
+  },
+
+  async getOrderList() {
+    const { status } = this.data;
+    wx.showLoading({ title: "加载中..." });
+    try {
+      const Res = await wx.request({
+        url: Api.getOrderList(status),
+        header: app.generateRequestHeader(),
+        method: "POST",
+        data: {
+          status,
+        },
+      });
+      if (!(Res.statusCode === 200 && Res.data)) {
+        throw new errors.ValidateError("获取订单列表失败");
+      }
+      wx.hideLoading();
+      
+
+      // 返回回来的订单信息
+      const { orderList } = Res.data;
+      this.setData({
+        orderList,
+      });
+    } catch (error) {
+      console.log(error);
+      
+      wx.hideLoading();
+      await wx.showToast({
+        title: error.name === "ValidateError" ? error.message : "出错了请重试",
+        icon: "none",
+        duration: 2000
+      });
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  async onLoad() {
+    await this.getOrderList();
   },
 
   /**

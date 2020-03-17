@@ -2,16 +2,16 @@
   <view class="content-container">
     <view class="add-address" bindtap="addAddress" wx:if="{{!hasAddress}}">
       <view class="text">
-        <i class="icon icon-search" />
+        <i class="icon icon-address" />
         添加收货地址
       </view>
       <view class="arrow">
-        <i class="icon icon-search" />
+        <i class="icon icon-arrow" />
       </view>
     </view>
     <view class="receiving-address" wx:if="{{hasAddress}}">
       <view class="location-icon">
-        <i class="icon icon-search" />
+        <i class="icon icon-address" />
       </view>
       <view class="address-info">
         <text class="receiver">{{addressDetail.receiver}}</text>
@@ -19,11 +19,11 @@
         <text class="address">{{addressDetail.address}}</text>
       </view>
       <view class="arrow-icon">
-        <i class="icon icon-search" />
+        <i class="icon icon-arrow" />
       </view>
     </view>
     <view class="good-card">
-      <image src="{{goodDetail.goodImgList[0]}}" />
+      <image src="{{goodDetail.goodImgList[0] || goodDetail.main_img}}" />
       <view class="good-info">
         <view class="good-info-top">
           <view class="good-name">{{goodDetail.name}}</view>
@@ -64,16 +64,22 @@
       <text class="price">{{goodDetail.price}}.00</text>
     </view>
     <view class="bottom-btn">
-      <button class="btn submit-order" wx:if="{{orderDetail.status !== 2}}" bindtap="{{!orderDetail.status ? 'submitOrder' : 'checkUserAccount'}}">
-        {{!orderDetail.status ? '提交订单' : '支付'}}
+      <button class="btn submit-order" wx:if="{{!orderDetail.status}}" bindtap="submitOrder">
+        提交订单
       </button>
+      <button class="btn submit-order" wx:if="{{orderDetail.status === 1}}" bindtap="checkUserAccount">
+        支付
+      </button>
+      <button class="btn submit-order" wx:if="{{orderDetail.status === 2}}" bindtap="delivery">催发货</button>
+      <button class="btn submit-order" wx:if="{{orderDetail.status === 3}}" bindtap="confirmReceiving">确认收货</button>
+      <button class="btn submit-order" wx:if="{{orderDetail.status === 4}}" bindtap="evaluate">评价</button>
     </view>
   </view>
   <view class="box-mask" wx:if="{{showPayModal}}"></view>
   <view class="pay-modal" wx:if="{{showPayModal}}">
     <view class="modal-title">
       <text>支付</text>
-      <i class="icon icon-search" bindtap="closePayModal"></i>
+      <i class="icon icon-close" bindtap="closePayModal"></i>
     </view>
     <view class="modal-content">
       <view class="modal-cell">
@@ -84,13 +90,12 @@
         <view class="title">需要支付</view>
         <view class="content price">￥{{goodDetail.price}}</view>
       </view>
-      <view class="tips" wx:if="{{needRecharge}}">
-        您的账户余额不足，请联系管理员进行充值
-      </view>
+      <view class="tips" wx:if="{{needRecharge}}">您的账户余额不足，请联系管理员进行充值</view>
       <view class="operation">
-        <view class="operation-btn {{needRecharge ? 'disabled' : ''}}" bindtap="{{needRecharge ? '' : 'goToPay'}}">确认支付</view>
+        <view class="operation-btn {{needRecharge ? 'disabled' : ''}}" bindtap="{{needRecharge ? '' : 'goToPay'}}">
+          确认支付
+        </view>
       </view>
     </view>
-    
   </view>
 </view>

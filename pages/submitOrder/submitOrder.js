@@ -5,24 +5,24 @@ const errors = require("../../utils/error");
 const app = getApp();
 
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     showPayModal: false,
     needRecharge: false,
+    statusEnum: ["待付款", "代发货", "待收货", "待评价", "已完成"]
   },
 
   addAddress() {
     wx.navigateTo({
-      url: '/pages/addAddress/addAddress',
+      url: "/pages/addAddress/addAddress"
     });
   },
 
   closePayModal() {
     this.setData({
-      showPayModal: false,
+      showPayModal: false
     });
   },
 
@@ -37,24 +37,23 @@ Page({
         data: {
           addressDetail,
           goodDetail,
-          size,
+          size
         }
       });
       if (!(Res.statusCode === 200 && Res.data)) {
         throw new errors.ValidateError("获取信息失败");
       }
       wx.hideLoading();
-      
 
       // 返回回来的订单信息
       const { orderDetail, msg } = Res.data;
       this.setData({
-        orderDetail: orderDetail[0],
+        orderDetail
       });
       wx.showModal({
-        title: '提示',
+        title: "提示",
         content: msg,
-        showCancel: false,
+        showCancel: false
       });
     } catch (error) {
       wx.hideLoading();
@@ -72,7 +71,7 @@ Page({
       const Res = await wx.request({
         url: Api.checkUserAccount(),
         header: app.generateRequestHeader(),
-        method: "GET",
+        method: "GET"
       });
       if (!(Res.statusCode === 200 && Res.data)) {
         throw new errors.ValidateError("获取余额失败");
@@ -81,11 +80,11 @@ Page({
 
       // 返回回来的订单信息
       const { balance } = Res.data;
-      const needRecharge = balance<=0 || balance<this.data.goodDetail.price;
+      const needRecharge = balance <= 0 || balance < this.data.goodDetail.price;
       this.setData({
         balance,
         showPayModal: true,
-        needRecharge,
+        needRecharge
       });
     } catch (error) {
       wx.hideLoading();
@@ -106,7 +105,7 @@ Page({
         method: "POST",
         data: {
           orderId: this.data.orderDetail.orderId,
-          orderPrice: this.data.goodDetail.price,
+          orderPrice: this.data.goodDetail.price
         }
       });
       if (!(Res.statusCode === 200 && Res.data)) {
@@ -115,13 +114,11 @@ Page({
       wx.hideLoading();
       const { orderStatus, msg } = Res.data;
       this.setData({
-        'orderDetail.status': orderStatus,
-        showPayModal: false,
+        "orderDetail.status": orderStatus,
+        showPayModal: false
       });
-      wx.showModal({
-        title: '提示',
-        content: msg,
-        showCancel: false,
+      wx.navigateTo({
+        url: "/pages/orderList/orderList"
       });
     } catch (error) {
       wx.hideLoading();
@@ -131,7 +128,6 @@ Page({
         duration: 2000
       });
       console.log(error);
-      
     }
   },
 
@@ -150,11 +146,13 @@ Page({
 
       const addressList = Res.data.addressList;
       const hasAddress = addressList.length > 0;
-      const addressDetail = addressList.find((item) => { return item.is_default === 1 });
-      
+      const addressDetail = addressList.find(item => {
+        return item.is_default === 1;
+      });
+
       this.setData({
         addressDetail,
-        hasAddress,
+        hasAddress
       });
     } catch (error) {
       wx.hideLoading();
@@ -166,65 +164,158 @@ Page({
     }
   },
 
+  async getOrderDetail() {
+    wx.showLoading({ title: "加载中..." });
+    try {
+      const Res = await wx.request({
+        url: Api.getOrderDetail(this.data.orderId),
+        header: app.generateRequestHeader(),
+        method: "GET"
+      });
+      if (!(Res.statusCode === 200 && Res.data)) {
+        throw new errors.ValidateError("获取订单信息失败");
+      }
+      wx.hideLoading();
+      const { addressDetail, goodDetail, orderDetail } = Res.data;
+      this.setData({
+        addressDetail,
+        goodDetail,
+        hasAddress: true,
+        orderDetail
+      });
+    } catch (error) {
+      console.log(error);
+
+      wx.hideLoading();
+      await wx.showToast({
+        title: error.name === "ValidateError" ? error.message : "出错了请重试",
+        icon: "none",
+        duration: 2000
+      });
+    }
+  },
+
+  async delivery() {
+    wx.showLoading({ title: "加载中..." });
+    try {
+      const Res = await wx.request({
+        url: Api.delivery(),
+        header: app.generateRequestHeader(),
+        method: "POST",
+        data: {
+          orderId: this.data.orderDetail.orderId,
+        }
+      });
+      if (!(Res.statusCode === 200 && Res.data)) {
+        throw new errors.ValidateError("失败请重试");
+      }
+      wx.hideLoading();
+      const { orderStatus } = Res.data;
+      this.setData({
+        "orderDetail.status": orderStatus,
+      });
+      wx.navigateTo({
+        url: "/pages/orderList/orderList"
+      });
+    } catch (error) {
+      wx.hideLoading();
+      await wx.showToast({
+        title: error.name === "ValidateError" ? error.message : "出错了请重试",
+        icon: "none",
+        duration: 2000
+      });
+    }
+  },
+
+  async confirmReceiving() {
+    wx.showLoading({ title: "加载中..." });
+    try {
+      const Res = await wx.request({
+        url: Api.confirmReceiving(),
+        header: app.generateRequestHeader(),
+        method: "POST",
+        data: {
+          orderId: this.data.orderDetail.orderId,
+        }
+      });
+      if (!(Res.statusCode === 200 && Res.data)) {
+        throw new errors.ValidateError("失败请重试");
+      }
+      wx.hideLoading();
+      const { orderStatus } = Res.data;
+      this.setData({
+        "orderDetail.status": orderStatus,
+      });
+      wx.navigateTo({
+        url: "/pages/orderList/orderList"
+      });
+    } catch (error) {
+      wx.hideLoading();
+      await wx.showToast({
+        title: error.name === "ValidateError" ? error.message : "出错了请重试",
+        icon: "none",
+        duration: 2000
+      });
+    }
+  },
+
+  async evaluate() {
+    const { orderId, goodDetail } = this.data;
+    wx.navigateTo({
+      url: `/pages/evaluate/evaluate?orderId=${orderId}&goodDetail=${JSON.stringify(goodDetail)}`,
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    let { goodDetail, size } = options;
-    goodDetail = JSON.parse(goodDetail);
-    this.getUserInfo();
-    this.setData({
-      goodDetail,
-      size
-    });
+    if (options.orderId) {
+      this.data.orderId = options.orderId;
+      await this.getOrderDetail();
+    } else {
+      let { goodDetail, size } = options;
+      goodDetail = JSON.parse(goodDetail);
+      this.getUserInfo();
+      this.setData({
+        goodDetail,
+        size
+      });
+    }
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-
-  },
+  onReady: function() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
-  },
+  onShow: function() {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-
-  },
+  onHide: function() {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-
-  },
+  onUnload: function() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-
-  },
+  onPullDownRefresh: function() {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-
-  },
+  onReachBottom: function() {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
-  }
-})
+  onShareAppMessage: function() {}
+});

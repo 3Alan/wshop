@@ -23,7 +23,7 @@
 .avatar {
   width: 150rpx;
   height: 150rpx;
-  border: 1rpx solid var(--orange-color-border);
+  border: 1rpx solid var(--blue-color);
   border-radius: 50%;
 }
 .avatar image {

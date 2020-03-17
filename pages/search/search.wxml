@@ -6,7 +6,7 @@
     <view class="history-header">
       <view class="title">历史搜索</view>
       <view class="delete-history" bindtap="deleteHistory">
-        <i class="icon icon-search"></i>
+        <i class="icon icon-delete"></i>
       </view>
     </view>
     <view class="search-tags">

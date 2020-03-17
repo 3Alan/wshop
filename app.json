@@ -12,7 +12,8 @@
     "pages/addAddress/addAddress",
     "pages/orderList/orderList",
     "pages/myCollection/myCollection",
-    "pages/addressList/addressList"
+    "pages/addressList/addressList",
+    "pages/evaluate/evaluate"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -23,7 +24,7 @@
   "tabBar": {
     "backgroundColor": "#fff",
     "color": "#b3b3b3",
-    "selectedColor": "#e95323",
+    "selectedColor": "#027ec3",
     "list": [
       {
         "pagePath": "pages/index/index",
@@ -34,14 +35,14 @@
       {
         "pagePath": "pages/category/category",
         "text": "分类",
-        "iconPath": "./images/category.png",
-        "selectedIconPath": "./images/category_selected.png"
+        "iconPath": "./images/menu.png",
+        "selectedIconPath": "./images/menu_selected.png"
       },
       {
         "pagePath": "pages/user/user",
         "text": "我的",
-        "iconPath": "./images/me.png",
-        "selectedIconPath": "./images/me_selected.png"
+        "iconPath": "./images/user.png",
+        "selectedIconPath": "./images/user_selected.png"
       }
     ]
   },

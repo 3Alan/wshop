@@ -1,0 +1,106 @@
+.good-card {
+  background: #fff;
+  padding: 20rpx 30rpx 20rpx 20rpx;
+  display: flex;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  margin: 10rpx 0;
+}
+.good-card .good-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.good-card .good-info .good-info-top {
+  font-size: 32rpx;
+  color: #888;
+}
+.good-card .good-info .good-info-bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5rpx;
+}
+.good-card .good-info .good-info-bottom .good-price {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.good-card image {
+  width: 200rpx;
+  height: 200rpx;
+  margin-right: 15rpx;
+}
+.bottom-container {
+  width: 100%;
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+  border-top: 1rpx solid var(--white-color-border);
+  justify-content: center;
+  padding: 20rpx;
+  box-sizing: border-box;
+  font-size: 30rpx;
+}
+.bottom-btn {
+  width: 50%;
+  text-align: center;
+}
+.submit-order {
+  width: 100% !important;
+  background-color: var(--blue-color);
+  padding: 25rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 32rpx;
+}
+.page-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.content-container {
+  flex: 1;
+  overflow: scroll;
+  font-size: 28rpx;
+  background: var(--white-color-border);
+  padding: 15rpx;
+}
+.comment-level-content {
+  background: #fff;
+  border-radius: 10rpx;
+  margin: 20rpx 0;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+}
+.comment-level-content .good-tips {
+  color: var(--orange-color);
+}
+.comment-level-content .bad-tips {
+  color: #888;
+}
+.comment {
+  border: 1rpx solid #ccc;
+  background: #fff;
+  border-radius: 10rpx;
+  width: 100%;
+  font-size: 28rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.comment-level {
+  display: flex;
+  margin: 20rpx 0;
+}
+.comment-level .good-comment, .comment-level .bad-comment {
+  border: 1rpx solid var(--grey-fontcolor);
+  border-radius: 10rpx;
+  padding: 10rpx;
+  color: var(--grey-fontcolor);
+  width: 120rpx;
+  text-align: center;
+  margin-right: 30rpx;
+}
+.comment-level .good-comment.active, .comment-level .bad-comment.active {
+  border-color: var(--blue-color);
+  color: var(--blue-color);
+}

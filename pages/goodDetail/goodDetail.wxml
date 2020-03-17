@@ -16,14 +16,14 @@
       <text>选择尺码</text>
       <view class="right-content">
         <text class="righ-content-text">{{size}}</text>
-        <i class="icon icon-search"></i>
+        <i class="icon icon-arrow"></i>
       </view>
     </view>
     <view class="cell">
       <text>商品评价（35）</text>
       <view class="right-content">
         <text class="righ-content-text">98%好评</text>
-        <i class="icon icon-search"></i>
+        <i class="icon icon-arrow"></i>
       </view>
     </view>
     <view class="purchase-rules">
@@ -60,7 +60,7 @@
   </view>
   <view class="bottomBtn" bindtap="collect">
     <view class="collect">
-      <i class="icon icon-search"></i>
+      <i class="icon icon-collect-hollow"></i>
       收藏
     </view>
     <view class="button">
@@ -75,7 +75,7 @@
         <text>￥</text>{{goodPrice}}.00
       </view>
       <view class="close-box" bindtap="closeSizeBox">
-        <i class="icon icon-search"></i>
+        <i class="icon icon-close"></i>
       </view>
     </view>
     <view class="size">

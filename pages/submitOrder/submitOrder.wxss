@@ -36,6 +36,9 @@
   align-items: center;
   padding-right: 30rpx;
 }
+.receiving-address i {
+  font-size: 40rpx;
+}
 .content-container .receiving-address .arrow-icon {
   display: flex;
   align-items: center;

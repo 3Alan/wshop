@@ -15,6 +15,11 @@ const SET_DEFAULT_ADDRESS = '/user/set_default_address';
 const SUBMIT_ORDER = '/user/submit_order';
 const CHECK_USER_ACCOUNT = '/user/check_user_account';
 const PAY_FOR_ORDER = '/user/pay_for_order';
+const GET_ORDER_LIST = '/user/get_order_list';
+const GET_ORDER_DETAIL = '/user/get_order_detail';
+const DELIVERY = '/user/delivery';
+const CONFIRM_RECEIVING = '/user/confirm_receiving';
+const ORDER_EVALUATE = '/user/order_evaluate';
 
 function getGoodDetail(goodId) {
   return `${HOST_URI}${GOOD_DETAIL}?goodId=${goodId}`;
@@ -52,6 +57,21 @@ function checkUserAccount() {
 function payForOrder() {
   return `${HOST_URI}${PAY_FOR_ORDER}`;
 }
+function getOrderList() {
+  return `${HOST_URI}${GET_ORDER_LIST}`;
+}
+function getOrderDetail(orderId) {
+  return `${HOST_URI}${GET_ORDER_DETAIL}?orderId=${orderId}`;
+}
+function delivery() {
+  return `${HOST_URI}${DELIVERY}`;
+}
+function confirmReceiving() {
+  return `${HOST_URI}${CONFIRM_RECEIVING}`;
+}
+function orderEvaluate() {
+  return `${HOST_URI}${ORDER_EVALUATE}`;
+}
 
 
 function submitOrder() {
@@ -67,6 +87,11 @@ module.exports.deleteAddress = deleteAddress;
 module.exports.setDefaultAddress = setDefaultAddress;
 module.exports.checkUserAccount = checkUserAccount;
 module.exports.payForOrder = payForOrder;
+module.exports.getOrderList = getOrderList;
+module.exports.getOrderDetail = getOrderDetail;
+module.exports.delivery = delivery;
+module.exports.confirmReceiving = confirmReceiving;
+module.exports.orderEvaluate = orderEvaluate;
 
 module.exports.getGoodDetail = getGoodDetail;
 module.exports.getGoodList = getGoodList;
