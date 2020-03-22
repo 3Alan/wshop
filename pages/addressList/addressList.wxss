@@ -1,0 +1,75 @@
+.page-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.content-container {
+  flex: 1;
+  overflow: scroll;
+  font-size: 28rpx;
+  background: var(--white-color-border);
+  padding: 15rpx;
+}
+.content-container .receiving-address {
+  display: inline-flex;
+  padding: 40rpx 30rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  margin-bottom: 15rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+.content-container .receiving-address .location-icon {
+  display: flex;
+  align-items: center;
+  padding-right: 30rpx;
+}
+.receiving-address {
+  position: relative;
+}
+.receiving-address i{
+  font-size: 40rpx;
+}
+.default-address::before {
+  font-size: 32rpx;
+  position: absolute;
+  content: '';
+  background: var(--blue-color);
+  width: 8rpx;
+  height: 90%;
+  top: 5%;
+  left: 0;
+}
+.receiving-address .address-info {
+  flex: 1;
+}
+.receiving-address .address-info .receiver {
+  font-size: 32rpx;
+  margin-right: 20rpx;
+}
+.receiving-address .address-info .tel {
+  color: #ccc;
+}
+.receiving-address .address-info .address {
+  margin-top: 15rpx;
+  display: block;
+}
+.bottom-container {
+  width: 100%;
+  height: 120rpx;
+  border-top: 1rpx solid var(--white-color-border);
+  padding: 15rpx;
+  box-sizing: border-box;
+  font-size: 32rpx;
+  display: flex;
+  justify-content: center;
+}
+.bottom-container .add-address {
+  color: #fff;
+  width: 60%;
+  padding: 30rpx;
+  border-radius: 50rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

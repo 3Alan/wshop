@@ -1,0 +1,14 @@
+<view class="searchBarContainer">
+  <view class="search-bar">
+    <i class="icon icon-search"></i>
+    <input type="text" value="{{searchContent}}" placeholder="实战利器AJ34" class="searchInput" bindtap="{{isAble ? '' : 'goToSearch'}}" bindconfirm="inputSearch" disabled="{{!isAble}}" bindfocus="focusEvent"/>
+  </view>
+  <view class="cancel" bindtap="cancelSearch" wx:if="{{hasCancel}}">取消</view>
+</view>
+<!-- <view class="search-result">
+  <view class="search-items">
+    <view class="search-item" wx:for="{{searchResult}}" wx:key="index" bindtap="goToSearchResult" data-id="{{item.goodId}}">
+      {{item.name}}
+    </view>
+  </view>
+</view> -->

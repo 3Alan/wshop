@@ -1,0 +1,66 @@
+.cataItems {
+  height: 60rpx;
+  padding: 0 10rpx 10rpx;
+  width: 100%;
+  white-space: nowrap;
+}
+.cataItem {
+  display: inline-block;
+  padding: 0 30rpx;
+  line-height: 60rpx;
+  font-weight: bold;
+  color: var(--grey-fontcolor);
+  position: relative;
+}
+.cataItem.active{
+  color: var(--orange-color);
+}
+.cataItem.active:after{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 23rpx;
+  right: 18rpx;
+  height: 6rpx;
+  background-color: var(--blue-color);
+  border-radius: 4rpx;
+}
+.good {
+  padding: 1rpx;
+  width: 50%;
+  font-size: 28rpx;
+  box-sizing: border-box;
+  display: inline-block;
+  border: 1px solid rgb(245, 245, 245);
+  margin-bottom: 15rpx;
+}
+.goodImg {
+  width: 100%;
+  padding-bottom: 100%;
+  height: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.good image {
+  width: 100%;
+}
+.good .goodName {
+  padding: 5rpx;
+  margin-bottom: 10rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  height: 70rpx;
+}
+.good .goodPrice {
+  display: inline-block;
+  width: 50%;
+  font-weight: bold;
+}
+.good .salesVolume {
+  display: inline-block;
+  width: 50%;
+  color: var(--grey-fontcolor);
+}

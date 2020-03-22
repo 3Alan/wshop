@@ -1,0 +1,16 @@
+<view class="page-container">
+  <view wx:for="{{collectionList}}" wx:key="index" class="card-container">
+    <view class="good-card" style="{{item.leftStyle}}" bindtap="goToGoodDetail" data-id="{{item.goodId}}" data-index="{{index}}" bindtouchmove="move" bindtouchend="touched" bindtouchstart="startTouch">
+      <image src="{{item.main_img}}" />
+      <view class="good-info">
+        <view class="good-info-top">
+          <view class="good-name">{{item.name}}</view>
+        </view>
+        <view class="good-info-bottom">
+          <view class="good-price">￥{{item.price}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="delete-btn" bindtap="cancelCollect" data-id="{{item.id}}">删除</view>
+  </view>
+</view>

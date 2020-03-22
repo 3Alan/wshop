@@ -1,0 +1,103 @@
+<view class="page-container">
+  <view class="content-container">
+    <view class="add-address" bindtap="addAddress" wx:if="{{!hasAddress}}">
+      <view class="text">
+        <i class="icon icon-address" />
+        添加收货地址
+      </view>
+      <view class="arrow">
+        <i class="icon icon-arrow" />
+      </view>
+    </view>
+    <view class="receiving-address" wx:if="{{hasAddress}}">
+      <view class="location-icon">
+        <i class="icon icon-address" />
+      </view>
+      <view class="address-info">
+        <text class="receiver">{{addressDetail.receiver}}</text>
+        <text class="tel">{{addressDetail.tel}}</text>
+        <text class="address">{{addressDetail.address}}</text>
+      </view>
+    </view>
+    <view class="good-card" bindtap="goToGoodDetail">
+      <image src="{{goodDetail.goodImgList[0] || goodDetail.main_img}}" />
+      <view class="good-info">
+        <view class="good-info-top">
+          <view class="good-name">{{goodDetail.name}}</view>
+        </view>
+        <view class="good-info-bottom">
+          <view class="good-size">{{size || orderDetail.size}}码</view>
+          <view class="good-price">￥{{goodDetail.price}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="order-detail" wx:if="{{orderDetail.status}}">
+      <view class="detail-title">订单信息</view>
+      <view class="detail-cell">
+        <text class="cell-title">姓名：</text>
+        <text class="cell-content">{{orderDetail.receiver}}</text>
+      </view>
+      <view class="detail-cell">
+        <text class="cell-title">手机号：</text>
+        <text class="cell-content">{{orderDetail.tel}}</text>
+      </view>
+      <view class="detail-cell">
+        <text class="cell-title">收货地址：</text>
+        <text class="cell-content">{{orderDetail.address}}</text>
+      </view>
+      <view class="detail-cell">
+        <text class="cell-title">订单号：</text>
+        <text class="cell-content">{{orderDetail.orderId}}</text>
+      </view>
+      <view class="detail-cell">
+        <text class="cell-title">创建时间：</text>
+        <text class="cell-content">{{orderDetail.time}}</text>
+      </view>
+    </view>
+    <view class="cancel-order" bindtap="cancelOrder" wx:if="{{orderDetail.status === 1}}">
+      取消订单
+    </view>
+  </view>
+  <view class="bottom-container">
+    <view class="payments">
+      实付款:￥
+      <text class="price">{{goodDetail.price}}.00</text>
+    </view>
+    <view class="bottom-btn">
+      <button class="btn submit-order" disabled="{{!hasAddress}}" wx:if="{{!orderDetail.status}}" bindtap="submitOrder">
+        提交订单
+      </button>
+      <button class="btn submit-order" wx:if="{{orderDetail.status === 1}}" bindtap="checkUserAccount">
+        支付
+      </button>
+      <button class="btn submit-order" wx:if="{{orderDetail.status === 2}}" bindtap="delivery">催发货</button>
+      <button class="btn submit-order" wx:if="{{orderDetail.status === 3}}" bindtap="confirmReceiving">确认收货</button>
+      <button class="btn submit-order" wx:if="{{orderDetail.status === 4}}" bindtap="evaluate">评价</button>
+      <view class="order-status" wx:if="{{orderDetail.status === 5}}">订单已完成</view>
+      <view class="order-status" wx:if="{{orderDetail.status === 6}}">订单已取消</view>
+    </view>
+  </view>
+  <view class="box-mask" wx:if="{{showPayModal}}"></view>
+  <view class="pay-modal" wx:if="{{showPayModal}}">
+    <view class="modal-title">
+      <text>支付</text>
+      <i class="icon icon-close" bindtap="closePayModal"></i>
+    </view>
+    <view class="modal-content">
+      <view class="modal-cell">
+        <view class="title">余额</view>
+        <view class="content">￥{{balance}}</view>
+      </view>
+      <view class="modal-cell">
+        <view class="title">需要支付</view>
+        <view class="content price">￥{{goodDetail.price}}</view>
+      </view>
+      <view class="tips" wx:if="{{needRecharge}}">您的账户余额不足，请联系管理员进行充值</view>
+      <view class="operation">
+        <view class="operation-btn {{needRecharge ? 'disabled' : ''}}" bindtap="{{needRecharge ? '' : 'goToPay'}}">
+          确认支付
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

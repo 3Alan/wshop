@@ -1,0 +1,34 @@
+<view class="page-container">
+  <view class="content-container">
+    <view class="good-card">
+      <image src="{{goodDetail.goodImgList[0] || goodDetail.main_img}}" />
+      <view class="good-info">
+        <view class="good-info-top">
+          <view class="good-name">{{goodDetail.name}}</view>
+        </view>
+        <view class="good-info-bottom">
+          <view class="good-size">{{size}}码</view>
+          <view class="good-price">￥{{goodDetail.price}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="comment-level-content">
+      <view class="comment-level">
+        <view bindtap="toggleComment" class="good-comment {{goodComment ? 'active' : ''}}" data-key="good">
+          好评
+        </view>
+        <view bindtap="toggleComment" class="bad-comment {{badComment ? 'active' : ''}}" data-key="bad">
+          差评
+        </view>
+      </view>
+      <view class="good-tips" wx:if="{{goodComment}}">感谢您的鼓励！</view>
+      <view class="bad-tips" wx:if="{{badComment}}">我们会再接再厉的！</view>
+    </view>
+    <textarea cols="30" rows="10" placeholder="填写评论..." class="comment" bindinput="saveComment"></textarea>
+  </view>
+  <view class="bottom-container">
+    <view class="bottom-btn">
+      <button class="btn submit-order" bindtap="evaluate">评价</button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,62 @@
+.page-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.comment-container {
+  flex: 1;
+  overflow: scroll;
+}
+.comment {
+  padding: 20rpx;
+  font-size: 28rpx;
+  margin-bottom: 20rpx;
+  border-bottom: 1rpx solid #f2f2f2;
+}
+.comment .avator image{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50rpx;
+}
+.comment .username-info {
+  flex: 1;
+  margin-left: 25rpx;
+  font-size: 28rpx;
+}
+.comment .username-info .username {
+  font-weight: bold;
+}
+.comment .username-info .comment-time {
+  color: #ccc;
+}
+.comment-title {
+  display: flex;
+  align-items: center;
+}
+.comment-title i {
+  font-size: 36rpx;
+  color: var(--blue-color);
+}
+.comment-content {
+  padding: 10rpx;
+}
+.comment-level {
+  display: flex;
+  margin: 0 0 20rpx 0;
+  font-size: 28rpx;
+  padding: 20rpx;
+  border-bottom: 20rpx solid #f2f2f2;
+}
+.comment-level .good-comment, .comment-level .bad-comment {
+  border: 1rpx solid var(--grey-fontcolor);
+  border-radius: 10rpx;
+  padding: 10rpx;
+  color: var(--grey-fontcolor);
+  width: 120rpx;
+  text-align: center;
+  margin-right: 30rpx;
+}
+.comment-level .good-comment.active, .comment-level .bad-comment.active {
+  border-color: var(--blue-color);
+  color: var(--blue-color);
+}

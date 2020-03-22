@@ -1,0 +1,24 @@
+<view class="searchBar">
+  <searchBar isAble="true" bindinputFocus="hideTags"></searchBar>
+</view>
+<view class="tags" wx:if="{{!hideTags}}">
+  <view class="history-search" wx:if="{{hasHistory}}">
+    <view class="history-header">
+      <view class="title">历史搜索</view>
+      <view class="delete-history" bindtap="deleteHistory">
+        <i class="icon icon-delete"></i>
+      </view>
+    </view>
+    <view class="search-tags">
+      <view class="tag" wx:for="{{historySearch}}" bindtap="goToSearchResult" wx:key="index" data-name="{{item}}">
+        {{item}}
+      </view>
+    </view>
+  </view>
+  <view class="hot-search">
+    <view class="title">热门搜索</view>
+    <view class="search-tags">
+      <view class="tag" wx:for="{{hotSearch}}" bindtap="goToSearchResult" wx:key="index" data-name="{{item}}">{{item}}</view>
+    </view>
+  </view>
+</view>

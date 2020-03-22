@@ -1,0 +1,27 @@
+<view class="container">
+  <view class="adress-info">
+    <view class="info-cell">
+      <text class="cell-title">收货人</text>
+      <view class="input-content">
+        <input type="text" placeholder="填写姓名" data-key="receiver" bindinput="saveReceiverInfo" />
+      </view>
+    </view>
+    <view class="info-cell">
+      <text class="cell-title">联系电话</text>
+      <view class="input-content">
+        <input type="number" placeholder="填写手机号" data-key="tel" bindinput="saveReceiverInfo"/>
+      </view>
+    </view>
+    <view class="info-cell">
+      <text class="cell-title">所在区域</text>
+      <picker class="picker-content" mode="region" bindchange="bindRegionChange">
+          <view class="address">{{address ? address : '请选择'}}</view>
+          <i class="icon icon-arrow"></i>
+      </picker>
+    </view>
+    <view class="address-detail">
+      <textarea placeholder="填写详细地址" data-key="addressDetail" bindinput="saveReceiverInfo"></textarea>
+    </view>
+  </view>
+  <view class="save-btn" bindtap="saveAddress">保存</view>
+</view>

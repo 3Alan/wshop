@@ -1,0 +1,65 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.filterBar {
+  padding: 0 20rpx 20rpx 20rpx;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  font-size: 28rpx;
+}
+.filterBar .filterItem{
+  flex: 1;
+  padding: 0 30rpx;
+  display: flex;
+  justify-content: center;
+  color: var(--grey-fontcolor);
+}
+.filterBar .filterItem.active{
+  color: var(--orange-color);
+}
+.goodsContainer {
+  overflow: scroll;
+  flex: 1;
+}
+.good {
+  padding: 1rpx;
+  width: 50%;
+  font-size: 28rpx;
+  box-sizing: border-box;
+  display: inline-block;
+  border: 1px solid rgb(245, 245, 245);
+  margin-bottom: 15rpx;
+}
+.goodImg {
+  width: 100%;
+  padding-bottom: 100%;
+  height: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.good image {
+  width: 100%;
+}
+.good .goodName {
+  padding: 5rpx;
+  margin-bottom: 10rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  height: 70rpx;
+}
+.good .goodPrice {
+  display: inline-block;
+  width: 50%;
+  font-weight: bold;
+}
+.good .salesVolume {
+  display: inline-block;
+  width: 50%;
+  color: var(--grey-fontcolor);
+}

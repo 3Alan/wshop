@@ -1,0 +1,25 @@
+<view class="page-container">
+  <view class="cataItems">
+    <view class="cataItem {{currentIndex === index ? 'active' : ''}}" wx:for="{{cataItems}}" bindtap="switchType" data-status="{{item.status}}" data-index="{{index}}" wx:key="index">
+      {{item.name}}
+    </view>
+  </view>
+  <view class="content-container">
+    <view class="good-card" wx:for="{{orderList}}" wx:key="index" data-id="{{item.orderId}}" catchtap="handleOrder">
+      <image src="{{item.main_img}}" />
+      <view class="good-info">
+        <view class="good-info-top">
+          <view class="good-name">{{item.name}}</view>
+          <view class="handler-btn" catchtap="handleOrder" wx:if="{{status === 1}}" data-id="{{item.orderId}}">去支付</view>
+          <view class="handler-btn" catchtap="handleOrder" wx:if="{{status === 2}}" data-id="{{item.orderId}}">催发货</view>
+          <view class="handler-btn" catchtap="handleOrder" wx:if="{{status === 3}}" data-id="{{item.orderId}}">确认收货</view>
+          <view class="handler-btn" catchtap="handleOrder" wx:if="{{status === 4}}" data-id="{{item.orderId}}">去评价</view>
+        </view>
+        <view class="good-info-bottom">
+          <view class="good-size">{{item.size}}码</view>
+          <view class="good-price">￥{{item.price}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,10 +1,32 @@
 /**app.wxss**/
-.container {
+@import './styles/iconfont.wxss';
+
+page {
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
-} 
+  --grey-background: #f5f5f5;
+  --grey-fontcolor: #b3b3b3;
+  --orange-color: #e95323;
+  --blue-color: #027ec3;
+  --light-blue-color: #36b4f8;
+  --blue-color-border: #e3f3fd;
+  --orange-color-border: #fca284;
+  --white-color-border: #f2f2f2;
+  --grey-font: #888;
+}
+.btn {
+  background: linear-gradient(left, var(--light-blue-color), var(--blue-color) 100%);
+  background: -moz-linear-gradient(left, var(--light-blue-color), var(--blue-color) 100%);
+  background: -webkit-linear-gradient(left, var(--light-blue-color), var(--blue-color) 100%);
+  box-shadow: 0 10rpx 30rpx rgba(2, 126, 195, .35);
+  font-size: 32rpx;
+  font-weight: normal;
+  border-radius: 50rpx;
+}
+.btn[disabled] {
+  background: #CCC !important;
+  color: #fff !important;
+  box-shadow: 0 10rpx 30rpx rgba(204, 204, 204, .35) !important;
+}
+.button-hover{
+  opacity: 0.8;
+}
