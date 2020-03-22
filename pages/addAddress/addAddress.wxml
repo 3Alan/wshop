@@ -16,7 +16,7 @@
       <text class="cell-title">所在区域</text>
       <picker class="picker-content" mode="region" bindchange="bindRegionChange">
           <view class="address">{{address ? address : '请选择'}}</view>
-          <i class="icon icon-search"></i>
+          <i class="icon icon-arrow"></i>
       </picker>
     </view>
     <view class="address-detail">

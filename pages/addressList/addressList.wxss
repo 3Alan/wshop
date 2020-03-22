@@ -27,6 +27,9 @@
 .receiving-address {
   position: relative;
 }
+.receiving-address i{
+  font-size: 40rpx;
+}
 .default-address::before {
   font-size: 32rpx;
   position: absolute;

@@ -1,0 +1,28 @@
+<view class="page-container">
+  <view class="comment-level">
+    <view bindtap="toggleComment" class="good-comment {{activeTab === 'all' ? 'active' : ''}}" data-key="all">
+      全部
+    </view>
+    <view bindtap="toggleComment" class="good-comment {{activeTab === 'good' ? 'active' : ''}}" data-key="good">
+      好评
+    </view>
+    <view bindtap="toggleComment" class="bad-comment {{activeTab === 'bad' ? 'active' : ''}}" data-key="bad">
+      差评
+    </view>
+  </view>
+  <view class="comment-container">
+    <view class="comment" wx:for="{{goodCommentList}}">
+      <view class="comment-title">
+        <view class="avator">
+          <image src="../../images/avatar.png" />
+        </view>
+        <view class="username-info">
+          <view class="username">{{item.username}}</view>
+          <view class="comment-time">{{item.time}}</view>
+        </view>
+        <i class="icon {{item.comment_type ? 'icon-smile' : 'icon-frown'}}"></i>
+      </view>
+      <view class="comment-content">{{item.comment}}</view>
+    </view>
+  </view>
+</view>

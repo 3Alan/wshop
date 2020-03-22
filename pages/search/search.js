@@ -1,13 +1,16 @@
-const wx = require('../../lib/wx.js');
+const Api = require("../../utils/api");
+const wx = require("../../lib/wx");
+const errors = require("../../utils/error");
+
+const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    historySearch: ['全城7', 'cp3', '欧文',],
-    hotSearch: ['CNY', '黑天使', '口红', '羽绒服', 'Force', '卫衣', 'Supreme'],
-    hasHistory: true,
+    hasHistory: false,
     hideTags: false,
   },
 
@@ -17,10 +20,30 @@ Page({
       content: '清空历史记录?',
     });
     if(isDelete.confirm) {
-      // 请求删除历史记录的接口，删除成功的话，清空历史记录
+      wx.showLoading({ title: "加载中..." });
+      try {
+        const Res = await wx.request({
+          url: Api.deleteHistory(),
+          header: app.generateRequestHeader(),
+          method: "POST",
+        });
+        if (!(Res.statusCode === 200 && Res.data)) {
+          throw new errors.ValidateError("删除失败");
+        }
+        wx.hideLoading();
+      } catch (error) {
+        wx.hideLoading();
+        await wx.showToast({
+          title: error.name === "ValidateError" ? error.message : "出错了请重试",
+          icon: "none",
+          duration: 2000
+        });
+        console.log(error);
+      }
       this.setData({
         hasHistory: false,
       });
+      await this.getHistory();
     }
   },
   hideTags() {
@@ -29,66 +52,47 @@ Page({
     });
   },
   goToSearchResult(e) {
-    const name = e.currentTarget.dataset.name;
+    const searchValue = e.currentTarget.dataset.name;
     wx.redirectTo({
-      url: `/pages/searchResult/searchResult?name=${name}`,
+      url: `/pages/searchResult/searchResult?searchValue=${searchValue}`,
     });
-    // 根据name去搜索对应的商品
+  },
+
+  async getHistory() {
+    wx.showLoading({ title: "加载中..." });
+    try {
+      const Res = await wx.request({
+        url: Api.getHistory(),
+        header: app.generateRequestHeader(),
+        method: "GET",
+      });
+      if (!(Res.statusCode === 200 && Res.data)) {
+        throw new errors.ValidateError("获取数据失败");
+      }
+      const historySearch = Res.data.historySearch.map(({ content }) => content);
+      const hotSearch = Res.data.hotSearch.map(({ content }) => content);
+      this.setData({
+        historySearch,
+        hotSearch,
+        hasHistory: historySearch.length > 0,
+      });
+      wx.hideLoading();
+    } catch (error) {
+      wx.hideLoading();
+      await wx.showToast({
+        title: error.name === "ValidateError" ? error.message : "出错了请重试",
+        icon: "none",
+        duration: 2000
+      });
+      console.log(error);
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  async onLoad() {
     // 请求接口返回历史搜索和热门搜索
+    await this.getHistory();
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

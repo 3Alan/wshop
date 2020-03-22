@@ -2,7 +2,7 @@
   <view class="content-container">
     <view class="receiving-address {{item.is_default === 1 ? 'default-address' : ''}}" wx:for="{{addressList}}" wx:key="id" data-id="{{item.id}}" bindtap="setDefaultAddress">
       <view class="location-icon">
-        <i class="icon icon-search" />
+        <i class="icon icon-address" />
       </view>
       <view class="address-info">
         <text class="receiver">{{item.receiver}}</text>
@@ -10,7 +10,7 @@
         <text class="address">{{item.address}}</text>
       </view>
       <view class="delete-address" data-id="{{item.id}}" catchtap="deleteAddress" wx:if="{{item.is_default !== 1}}">
-        <i class="icon icon-search" />
+        <i class="icon icon-delete" />
       </view>
     </view>
   </view>

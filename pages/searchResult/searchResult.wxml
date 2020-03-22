@@ -1,24 +1,23 @@
 <view class="container">
   <view class="header">
     <view class="searchBar">
-      <searchBar isAble="true" bindinputFocus="hideContainer" searchContent="{{searchName}}"></searchBar>
+      <searchBar isAble="true" searchContent="{{searchValue}}"></searchBar>
     </view>
-    <view class="filterBar" wx:if="{{!hideContainer}}">
+    <view class="filterBar">
       <view class="default filterItem {{currentIndex === 'zh' ? 'active' : ''}}" data-index="zh" bindtap="switchFilter">综合</view>
       <view class="salesVolume filterItem {{currentIndex === 'xl' ? 'active' : ''}}" data-index="xl" bindtap="switchFilter">销量</view>
       <view class="price filterItem {{currentIndex === 'jg' ? 'active' : ''}}" data-index="jg" bindtap="switchFilter">价格</view>
-      <view class="new filterItem {{currentIndex === 'xp' ? 'active' : ''}}" data-index="xp" bindtap="switchFilter">新品</view>
     </view>
   </view>
-  <view class="goodsContainer" wx:if="{{!hideContainer}}">
+  <view class="goodsContainer">
     <view class="goods">
-      <view class="good" wx:for="{{searchResultList}}" bindtap="goodDetail" data-id="{{item.id}}" wx:key="index">
+      <view class="good" wx:for="{{searchResultList}}" bindtap="goodDetail" data-id="{{item.goodId}}" wx:key="index">
         <view class="goodImg">
-          <image src="{{item.img_url}}" mode="widthFix" />
+          <image src="{{item.main_img}}" mode="widthFix" />
         </view>
         <view class="goodName">{{item.name}}</view>
         <view class="goodPrice">￥{{item.price}}</view>
-        <view class="salesVolume">{{item.salesVolume}}人付款</view>
+        <view class="salesVolume">{{item.sales_volume}}人付款</view>
       </view>
     </view>
   </view>

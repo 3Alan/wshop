@@ -1,11 +1,16 @@
 const moment = require('../../lib/moment');
+const Api = require("../../utils/api");
+const wx = require("../../lib/wx");
+const errors = require("../../utils/error");
+
+const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    hideContainer: false,
     searchResultList: [
       {
         id: 1,
@@ -50,11 +55,6 @@ Page({
     ],
     currentIndex: 'zh',
   },
-  hideContainer() {
-    this.setData({
-      hideContainer: true,
-    })
-  },
   goodDetail (e) {
     const goodId = e.currentTarget.dataset.id;
     // 通过id跳转到对应的商品详情页面
@@ -62,20 +62,15 @@ Page({
   },
 
   sortByXl(a, b) {
-    return b.salesVolume - a.salesVolume;
+    return b.sales_volume - a.sales_volume;
   },
 
   sortByJg(a, b) {
     return b.price - a.price;
   },
-
-  sortByXp(a, b) {
-    return moment(b.shelfTime) - moment(a.shelfTime);
-  },
   
   switchFilter(e) {
     const index = e.currentTarget.dataset.index;
-    console.log(index);
     if(index === 'xl') {
       const xlList = this.data.searchResultList;
       xlList.sort(this.sortByXl);
@@ -106,74 +101,42 @@ Page({
     })
   },
 
+  async searchGoodList(inputValue) {
+    wx.showLoading({ title: "加载中..." });
+    try {
+      const Res = await wx.request({
+        url: Api.search(inputValue),
+        header: app.generateRequestHeader(),
+        method: "GET"
+      });
+      if (!(Res.statusCode === 200 && Res.data)) {
+        throw new errors.ValidateError("获取数据失败");
+      }
+      this.setData({
+        searchResultList: Res.data.goodList,
+        zhList: Res.data.goodList,
+      });
+      wx.hideLoading();
+    } catch (error) {
+      wx.hideLoading();
+      await wx.showToast({
+        title:
+          error.name === "ValidateError" ? error.message : "出错了请重试",
+        icon: "none",
+        duration: 2000
+      });
+      console.log(error);
+    }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    wx.showLoading({title: '搜索中...'});
-    const searchName = options.name;
+  async onLoad(options) {
+    const { searchValue } = options;
     this.setData({
-      searchName,
-    })
-    wx.hideLoading();
-    const { searchResultList } = this.data;
-    const zhList = JSON.parse(JSON.stringify(searchResultList));
-    this.setData({
-      zhList,
+      searchValue,
     });
-    // 这里通过name去接口搜索相关商品
-    // this.setData({
-    //   searchResultList,
-    // });
-    
+    await this.searchGoodList(searchValue);
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

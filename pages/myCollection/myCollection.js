@@ -1,48 +1,15 @@
-// pages/myCollection/myCollection.js
+const Api = require("../../utils/api");
+const wx = require("../../lib/wx");
+const errors = require("../../utils/error");
+
+const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    collectionList: [
-      {
-        name: 'Air Jordan 1 Midsdlafkjladsjfladj',
-        size: '42',
-        price: '987',
-        img:'https://c.static-nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/71584fa5-f265-4967-95b1-8cc2f6e09e78/air-jordan-1-mid-%E7%94%B7%E5%AD%90%E8%BF%90%E5%8A%A8%E9%9E%8B-DQ5wwd.jpg'
-      },
-      {
-        name: 'Air Jordan 1 Mid',
-        size: '42',
-        price: '9123',
-        img:'https://c.static-nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/71584fa5-f265-4967-95b1-8cc2f6e09e78/air-jordan-1-mid-%E7%94%B7%E5%AD%90%E8%BF%90%E5%8A%A8%E9%9E%8B-DQ5wwd.jpg'
-      },
-      {
-        name: 'Air Jordan 1 Mid',
-        size: '32',
-        price: '123',
-        img:'https://c.static-nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/71584fa5-f265-4967-95b1-8cc2f6e09e78/air-jordan-1-mid-%E7%94%B7%E5%AD%90%E8%BF%90%E5%8A%A8%E9%9E%8B-DQ5wwd.jpg'
-      },
-      {
-        name: 'Air Jordan 1 Mid',
-        size: '32',
-        price: '123',
-        img:'https://c.static-nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/71584fa5-f265-4967-95b1-8cc2f6e09e78/air-jordan-1-mid-%E7%94%B7%E5%AD%90%E8%BF%90%E5%8A%A8%E9%9E%8B-DQ5wwd.jpg'
-      },
-      {
-        name: 'Air Jordan 1 Mid',
-        size: '32',
-        price: '123',
-        img:'https://c.static-nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/71584fa5-f265-4967-95b1-8cc2f6e09e78/air-jordan-1-mid-%E7%94%B7%E5%AD%90%E8%BF%90%E5%8A%A8%E9%9E%8B-DQ5wwd.jpg'
-      },
-      {
-        name: 'Air Jordan 1 Mid',
-        size: '32',
-        price: '123',
-        img:'https://c.static-nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/71584fa5-f265-4967-95b1-8cc2f6e09e78/air-jordan-1-mid-%E7%94%B7%E5%AD%90%E8%BF%90%E5%8A%A8%E9%9E%8B-DQ5wwd.jpg'
-      },
-    ],
   },
 
   startTouch(e) {
@@ -75,68 +42,72 @@ Page({
     });
   },
 
-  deleteCard(e) {
-    let collectionList = this.data.collectionList.slice(0);
-    const currentCard = e.currentTarget.dataset.index;
-    collectionList.splice(currentCard, 1);
-    this.setData({
-      collectionList,
+  async cancelCollect(e) {
+    const { id } = e.currentTarget.dataset;
+    wx.showLoading({ title: "加载中..." });
+    try {
+      const Res = await wx.request({
+        url: Api.cancelCollect(),
+        header: app.generateRequestHeader(),
+        method: "POST",
+        data: {
+          id,
+        }
+      });
+      if (!(Res.statusCode === 200 && Res.data)) {
+        throw new errors.ValidateError("获取失败");
+      }
+      wx.hideLoading();
+    } catch (error) {
+      wx.hideLoading();
+      await wx.showToast({
+        title: error.name === "ValidateError" ? error.message : "出错了请重试",
+        icon: "none",
+        duration: 2000
+      });
+      console.log(error);
+    }
+    await this.getCollectionList();
+  },
+
+  goToGoodDetail(e) {
+    const goodId = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: `/pages/goodDetail/goodDetail?id=${goodId}`,
     });
+  },
+
+  async getCollectionList() {
+    wx.showLoading({ title: "加载中..." });
+    try {
+      const Res = await wx.request({
+        url: Api.getCollectionList(),
+        header: app.generateRequestHeader(),
+        method: "GET",
+      });
+      if (!(Res.statusCode === 200 && Res.data)) {
+        throw new errors.ValidateError("获取失败");
+      }
+      const { collectionList } = Res.data;
+      this.setData({
+        collectionList,
+      });
+      wx.hideLoading();
+    } catch (error) {
+      wx.hideLoading();
+      await wx.showToast({
+        title: error.message,
+        icon: "none",
+        duration: 2000
+      });
+      console.log(error);
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  async onLoad() {
+    await this.getCollectionList();
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

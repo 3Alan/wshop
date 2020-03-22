@@ -36,7 +36,7 @@ Page({
     } catch (error) {
       wx.hideLoading();
       await wx.showToast({
-        title: error.name === "ValidateError" ? error.message : "出错了请重试",
+        title: error.message,
         icon: "none",
         duration: 2000
       });
@@ -78,7 +78,7 @@ Page({
     } catch (error) {
       wx.hideLoading();
       await wx.showToast({
-        title: error.name === "ValidateError" ? error.message : "出错了请重试",
+        title: error.message,
         icon: "none",
         duration: 2000
       });
@@ -115,10 +115,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad() {
-    await this.getAddressList();
+    // await this.getAddressList();
   },
 
   async onShow() {
-    // await this.getAddressList();
+    await this.getAddressList();
   }
 });

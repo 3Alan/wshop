@@ -17,10 +17,15 @@ page {
   background: linear-gradient(left, var(--light-blue-color), var(--blue-color) 100%);
   background: -moz-linear-gradient(left, var(--light-blue-color), var(--blue-color) 100%);
   background: -webkit-linear-gradient(left, var(--light-blue-color), var(--blue-color) 100%);
-  box-shadow: 0 10rpx 30rpx rgba(255, 110, 0, .35);
+  box-shadow: 0 10rpx 30rpx rgba(2, 126, 195, .35);
   font-size: 32rpx;
   font-weight: normal;
   border-radius: 50rpx;
+}
+.btn[disabled] {
+  background: #CCC !important;
+  color: #fff !important;
+  box-shadow: 0 10rpx 30rpx rgba(204, 204, 204, .35) !important;
 }
 .button-hover{
   opacity: 0.8;

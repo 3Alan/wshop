@@ -3,7 +3,6 @@
     <text class="login-title">登录/注册</text>
     <input type="text" placeholder="用户名" data-key="username" bindinput="getInputStatus"/>
     <input type="text" password="{{true}}" placeholder="密码" data-key="password" bindinput="getInputStatus"/>
-    <view class="login-btn {{completeInput ? 'active' : ''}}" bindtap="{{completeInput ? 'login' : ''}}">登录</view>
-    <view class="register-btn">注册新的账号</view>
+    <view class="btn login-btn {{completeInput ? 'active' : ''}}" bindtap="{{completeInput ? 'login' : ''}}">登录</view>
   </view>
 </view>

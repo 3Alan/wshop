@@ -13,7 +13,8 @@
     "pages/orderList/orderList",
     "pages/myCollection/myCollection",
     "pages/addressList/addressList",
-    "pages/evaluate/evaluate"
+    "pages/evaluate/evaluate",
+    "pages/commentList/commentList"
   ],
   "window": {
     "backgroundTextStyle": "light",

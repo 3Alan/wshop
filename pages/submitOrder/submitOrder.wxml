@@ -18,18 +18,15 @@
         <text class="tel">{{addressDetail.tel}}</text>
         <text class="address">{{addressDetail.address}}</text>
       </view>
-      <view class="arrow-icon">
-        <i class="icon icon-arrow" />
-      </view>
     </view>
-    <view class="good-card">
+    <view class="good-card" bindtap="goToGoodDetail">
       <image src="{{goodDetail.goodImgList[0] || goodDetail.main_img}}" />
       <view class="good-info">
         <view class="good-info-top">
           <view class="good-name">{{goodDetail.name}}</view>
         </view>
         <view class="good-info-bottom">
-          <view class="good-size">{{size}}码</view>
+          <view class="good-size">{{size || orderDetail.size}}码</view>
           <view class="good-price">￥{{goodDetail.price}}</view>
         </view>
       </view>
@@ -57,6 +54,9 @@
         <text class="cell-content">{{orderDetail.time}}</text>
       </view>
     </view>
+    <view class="cancel-order" bindtap="cancelOrder" wx:if="{{orderDetail.status === 1}}">
+      取消订单
+    </view>
   </view>
   <view class="bottom-container">
     <view class="payments">
@@ -64,7 +64,7 @@
       <text class="price">{{goodDetail.price}}.00</text>
     </view>
     <view class="bottom-btn">
-      <button class="btn submit-order" wx:if="{{!orderDetail.status}}" bindtap="submitOrder">
+      <button class="btn submit-order" disabled="{{!hasAddress}}" wx:if="{{!orderDetail.status}}" bindtap="submitOrder">
         提交订单
       </button>
       <button class="btn submit-order" wx:if="{{orderDetail.status === 1}}" bindtap="checkUserAccount">
@@ -73,6 +73,8 @@
       <button class="btn submit-order" wx:if="{{orderDetail.status === 2}}" bindtap="delivery">催发货</button>
       <button class="btn submit-order" wx:if="{{orderDetail.status === 3}}" bindtap="confirmReceiving">确认收货</button>
       <button class="btn submit-order" wx:if="{{orderDetail.status === 4}}" bindtap="evaluate">评价</button>
+      <view class="order-status" wx:if="{{orderDetail.status === 5}}">订单已完成</view>
+      <view class="order-status" wx:if="{{orderDetail.status === 6}}">订单已取消</view>
     </view>
   </view>
   <view class="box-mask" wx:if="{{showPayModal}}"></view>

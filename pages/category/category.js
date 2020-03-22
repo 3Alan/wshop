@@ -15,8 +15,12 @@ Page({
         type: 'shoes'
       },
       {
-        name: '篮球',
-        type: 'basketball'
+        name: '休闲',
+        type: 'leisure'
+      },
+      {
+        name: '袜子',
+        type: 'socks'
       },
       {
         name: '男子',
@@ -28,15 +32,7 @@ Page({
       },
       {
         name: '儿童',
-        type: 'child'
-      },
-      {
-        name: '服装',
-        type: 'clothes'
-      },
-      {
-        name: '休闲鞋',
-        type: 'xxx'
+        type: 'kids'
       },
     ],
     currentIndex: 0,
@@ -80,7 +76,7 @@ Page({
     } catch (error) {
       wx.hideLoading();
       await wx.showToast({
-        title: error.name === "ValidateError" ? error.message : "请重新登录",
+        title: error.message,
         icon: "none",
         duration: 2000
       });
@@ -95,52 +91,17 @@ Page({
     await this.getGoodList('shoes');
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  async onShow() {
+    const type = app.globalData.categoryType;
+    const index = this.data.cataItems.findIndex((item) => item.type === type);
+    
+    if (type) {
+      await this.getGoodList(type);
+      this.setData({
+        currentItem: type,
+        currentIndex: index,
+      });
+      app.globalData.categoryType = '';
+    }
   }
 })

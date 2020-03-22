@@ -79,33 +79,6 @@ Page({
       console.log(error);
       
     }
-    // const Res = await wx.login();
-    // const { code } = Res;
-    // try {
-    //   const wxRes = await wx.request({
-    //     url: Api.wxLogin(),
-    //     method: 'POST',
-    //     data: {
-    //       code,
-    //     }
-    //   });
-    //   if (!(wxRes.statusCode === 200 && wxRes.data)) {
-    //     throw new errors.ValidateError('微信获取权限失败');
-    //   }
-    //   wx.hideLoading();
-      
-    //   console.log(wxRes);
-      
-    // } catch (error) {
-    //   wx.hideLoading();
-    //   await wx.showToast({
-    //     title: error.name === 'ValidateError' ? error.message : '出错了请重试',
-    //     icon: 'none',
-    //     duration: 2000,
-    //   });
-    //   console.log(error);
-      
-    // }
     
   },
 

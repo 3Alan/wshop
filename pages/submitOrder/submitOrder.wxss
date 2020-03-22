@@ -145,7 +145,7 @@
   display: flex;
 }
 .order-detail .detail-cell .cell-title {
-  width: 150rpx;
+  width: 140rpx;
 }
 .order-detail .detail-cell .cell-content {
   flex: 1;
@@ -226,4 +226,23 @@
 .tips {
   font-size: 24rpx;
   color: var(--orange-color);
+}
+.cancel-order {
+  width: 185rpx;
+  padding: 10rpx;
+  border: 1rpx solid var(--blue-color);
+  color: var(--blue-color);
+  height: 50rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 40rpx;
+  float: right;
+  margin-top: 30rpx;
+}
+.order-status {
+  text-align: center;
+  font-size: 32rpx;
+  color: var(--blue-color);
+  font-weight: bold;
 }

@@ -16,7 +16,7 @@
     <text>地址管理</text>
     <i class="icon icon-arrow"></i>
   </view>
-  <view class="logout" bindtap="logout" wx:if="{{isLogin}}">
+  <view class="btn logout" bindtap="logout" wx:if="{{isLogin}}">
     退出登录
   </view>
 </view>

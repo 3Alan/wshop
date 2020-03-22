@@ -15,6 +15,7 @@ Page({
   },
 
   addAddress() {
+    this.data.addAddress = true;
     wx.navigateTo({
       url: "/pages/addAddress/addAddress"
     });
@@ -117,7 +118,7 @@ Page({
         "orderDetail.status": orderStatus,
         showPayModal: false
       });
-      wx.navigateTo({
+      wx.redirectTo({
         url: "/pages/orderList/orderList"
       });
     } catch (error) {
@@ -181,7 +182,7 @@ Page({
         addressDetail,
         goodDetail,
         hasAddress: true,
-        orderDetail
+        orderDetail,
       });
     } catch (error) {
       console.log(error);
@@ -193,6 +194,13 @@ Page({
         duration: 2000
       });
     }
+  },
+
+  goToGoodDetail() {
+    const id = this.data.orderDetail ? this.data.orderDetail.goodId : this.data.goodId;
+    wx.navigateTo({
+      url: `/pages/goodDetail/goodDetail?id=${id}`
+    });
   },
 
   async delivery() {
@@ -214,9 +222,37 @@ Page({
       this.setData({
         "orderDetail.status": orderStatus,
       });
-      wx.navigateTo({
-        url: "/pages/orderList/orderList"
+      wx.navigateBack();
+    } catch (error) {
+      wx.hideLoading();
+      await wx.showToast({
+        title: error.name === "ValidateError" ? error.message : "出错了请重试",
+        icon: "none",
+        duration: 2000
       });
+    }
+  },
+
+  async cancelOrder() {
+    wx.showLoading({ title: "加载中..." });
+    try {
+      const Res = await wx.request({
+        url: Api.cancelOrder(),
+        header: app.generateRequestHeader(),
+        method: "POST",
+        data: {
+          orderId: this.data.orderDetail.orderId,
+        }
+      });
+      if (!(Res.statusCode === 200 && Res.data)) {
+        throw new errors.ValidateError("失败请重试");
+      }
+      wx.hideLoading();
+      const { orderStatus } = Res.data;
+      this.setData({
+        "orderDetail.status": orderStatus,
+      });
+      wx.navigateBack();
     } catch (error) {
       wx.hideLoading();
       await wx.showToast({
@@ -246,9 +282,7 @@ Page({
       this.setData({
         "orderDetail.status": orderStatus,
       });
-      wx.navigateTo({
-        url: "/pages/orderList/orderList"
-      });
+      wx.navigateBack();
     } catch (error) {
       wx.hideLoading();
       await wx.showToast({
@@ -261,7 +295,7 @@ Page({
 
   async evaluate() {
     const { orderId, goodDetail } = this.data;
-    wx.navigateTo({
+    wx.redirectTo({
       url: `/pages/evaluate/evaluate?orderId=${orderId}&goodDetail=${JSON.stringify(goodDetail)}`,
     });
   },
@@ -274,48 +308,20 @@ Page({
       this.data.orderId = options.orderId;
       await this.getOrderDetail();
     } else {
-      let { goodDetail, size } = options;
+      let { goodDetail, size, id } = options;
       goodDetail = JSON.parse(goodDetail);
-      this.getUserInfo();
+      await this.getUserInfo();
       this.setData({
         goodDetail,
-        size
+        size,
+        goodId: id,
       });
     }
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {},
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {},
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {},
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {},
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {},
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {},
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {}
+  async onShow() {
+    if (this.data.addAddress) {
+      await this.getUserInfo();
+    }
+  }
 });

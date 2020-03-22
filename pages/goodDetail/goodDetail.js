@@ -9,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    showSizeBox: false
+    showSizeBox: false,
   },
 
   purchase() {
@@ -23,11 +23,19 @@ Page({
         showSizeBox: true
       });
     } else {
-      const { goodDetail, size } = this.data;
+      const { goodDetail, size, goodId } = this.data;
       wx.navigateTo({
-        url: `/pages/submitOrder/submitOrder?goodDetail=${JSON.stringify(goodDetail)}&size=${size}`,
+        url: `/pages/submitOrder/submitOrder?goodDetail=${JSON.stringify(
+          goodDetail
+        )}&size=${size}&id=${goodId}`
       });
     }
+  },
+
+  viewComment() {
+    wx.navigateTo({
+      url: `/pages/commentList/commentList?goodId=${this.data.goodId}`
+    });
   },
 
   closeSizeBox() {
@@ -50,9 +58,8 @@ Page({
     });
   },
 
-  async onLoad(options) {
-    const goodId = options.id;
-    this.data.goodId = goodId;
+  async getGoodDetail() {
+    const { goodId } = this.data;
     wx.showLoading({ title: "加载中..." });
     try {
       const Res = await wx.request({
@@ -70,13 +77,20 @@ Page({
         price: goodPrice,
         goodImgList: banner,
         goodSizeList,
+        status,
+        goodRate,
+        commentNum,
       } = Res.data.goodDetail;
+
       this.data.goodDetail = Res.data.goodDetail;
       this.setData({
         goodName,
         goodPrice,
         banner,
-        goodSizeList
+        goodSizeList,
+        isCollected: status === 1,
+        goodRate,
+        commentNum,
       });
     } catch (error) {
       wx.hideLoading();
@@ -87,5 +101,39 @@ Page({
       });
       console.log(error);
     }
+  },
+
+  async onLoad(options) {
+    const goodId = options.id;
+    this.data.goodId = goodId;
+    await this.getGoodDetail();
+  },
+
+  async collect() {
+    const { goodId } = this.data;
+    wx.showLoading({ title: "加载中..." });
+    try {
+      const Res = await wx.request({
+        url: Api.collectGood(),
+        header: app.generateRequestHeader(),
+        method: "POST",
+        data: {
+          goodId
+        }
+      });
+      if (!(Res.statusCode === 200 && Res.data)) {
+        throw new errors.ValidateError("收藏失败");
+      }
+      wx.hideLoading();
+    } catch (error) {
+      wx.hideLoading();
+      await wx.showToast({
+        title: error.name === "ValidateError" ? error.message : "出错了请重试",
+        icon: "none",
+        duration: 2000
+      });
+      console.log(error);
+    }
+    await this.getGoodDetail();
   }
 });

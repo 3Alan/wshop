@@ -28,7 +28,7 @@
 }
 .good-name, .good-price {
   padding: 10rpx 40rpx;
-  font-size: 46rpx;
+  font-size: 42rpx;
   text-align: center;
 }
 .good-price {
@@ -51,35 +51,43 @@
 }
 .collect {
   padding-left: 5rpx;
+  display: flex;
+  align-items: center;
+}
+.collect i {
+  font-size: 42rpx;
+  margin-right: 10rpx;
+}
+.collect i.icon-collect {
+  color: var(--light-blue-color);
 }
 .button {
   margin-right: 50rpx;
 }
 .purchase {
   width: 60%;
-  background-color: var(--blue-color);
   padding: 25rpx;
   color: #fff;
   font-size: 32rpx;
 }
 .cell {
-  padding: 40rpx 30rpx;
+  padding: 30rpx;
   border-top: 1rpx solid #f2f2f2;
-  border-bottom: 5rpx solid #f2f2f2;
+  border-bottom: 1rpx solid #f2f2f2;
   display: flex;
   justify-content: space-between;
-  font-size: 32rpx;
+  font-size: 28rpx;
 }
 .righ-content-text {
   margin-right: 5rpx;
 }
 .purchase-rules {
   padding: 30rpx;
-  font-size: 32rpx;
+  font-size: 28rpx;
 }
 .rules-title {
   font-weight: bold;
-  font-size: 36rpx;
+  font-size: 32rpx;
   padding-bottom: 30rpx;
 }
 .purchase-rules .paragraph {
@@ -126,6 +134,9 @@
 }
 .size-box .size .size-botton.size-selected{
   border: 1rpx solid var(--blue-color);
+}
+.close-box {
+  font-size: 50rpx;
 }
 .box-mask {
   width: 100%;

@@ -11,12 +11,12 @@ Page({
     banner: [
       {
         image_url:
-          "https://c.static-nike.com/a/images/f_auto/q_auto/t_PDP_864_v1/10900ec8-c7a3-42d6-8256-02a74fae5970/kyrie-6-ep-%E7%94%B7%E5%AD%90%E7%AF%AE%E7%90%83%E9%9E%8B-NxC374.jpg",
+          "https://c.static-nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/71584fa5-f265-4967-95b1-8cc2f6e09e78/air-jordan-1-mid-%E7%94%B7%E5%AD%90%E8%BF%90%E5%8A%A8%E9%9E%8B-DQ5wwd.jpg",
         id: 1
       },
       {
         image_url:
-          "https://c.static-nike.com/a/images/f_auto/q_auto/t_PDP_864_v1/sajfuxynsopjnmfvkoo7/air-max-720-horizon-%E7%94%B7%E5%AD%90%E8%BF%90%E5%8A%A8%E9%9E%8B-NZKsWx.jpg",
+          "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/i1-03de242a-c358-466d-9ba8-7fda81144b10/jordan-sport-dna-%E7%94%B7%E5%AD%90%E6%A2%AD%E7%BB%87%E4%B8%8A%E8%A1%A3-KZgCSZ.jpg",
         id: 2
       },
       {
@@ -29,66 +29,37 @@ Page({
       categoryName: '理想鞋款',
       items: [
         {
-          image_url: 'https://c.static-nike.com/a/images/f_auto/dpr_2.0/h_500,c_limit/d6w1bv7xjnqsd14wfyzp/nike-.jpg',
-          type: '休闲'
+          image_url: 'https://c.static-nike.com/a/images/f_auto/dpr_1.0/h_540,c_limit/f9af2888-6758-4424-b70a-8e825fe9c987/nike-.jpg',
+          type: '休闲',
+          name: 'leisure'
         },
         {
-          image_url: 'https://c.static-nike.com/a/images/f_auto/dpr_2.0/h_500,c_limit/gdrmknak9s7znat42sw6/nike-.jpg',
-          type: '跑步'
+          image_url: 'https://static.nike.com/a/images/f_auto/dpr_2.0/h_500,c_limit/cd9ac6f8-d925-4ae1-b258-6df3e536e76a/image.jpg',
+          type: '男子',
+          name: 'male'
         },
         {
           image_url: 'https://c.static-nike.com/a/images/f_auto/dpr_2.0/h_500,c_limit/soikcb1qgpyytea4vzic/nike-.jpg',
-          type: '篮球'
+          type: '篮球',
+          name: 'shoes',
         },
       ]
     }
   },
-  //事件处理函数
-  // bindViewTap: function() {
-  //   wx.navigateTo({
-  //     url: '../logs/logs'
-  //   })
-  // },
 
   goToDetail({currentTarget: {dataset: { id }}}) {
     wx.navigateTo({url: `/pages/goodsDetail/goodsDetail?id=${id}`});
     console.log(id);
   },
 
+  goToCategory(e) {
+    const type = e.currentTarget.dataset.name;
+    app.globalData.categoryType = type;
+    wx.switchTab({
+      url: `/pages/category/category`
+    });
+  },
+
   onLoad: function() {
-    // if (app.globalData.userInfo) {
-    //   this.setData({
-    //     userInfo: app.globalData.userInfo,
-    //     hasUserInfo: true
-    //   })
-    // } else if (this.data.canIUse){
-    //   // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-    //   // 所以此处加入 callback 以防止这种情况
-    //   app.userInfoReadyCallback = res => {
-    //     this.setData({
-    //       userInfo: res.userInfo,
-    //       hasUserInfo: true
-    //     })
-    //   }
-    // } else {
-    //   // 在没有 open-type=getUserInfo 版本的兼容处理
-    //   wx.getUserInfo({
-    //     success: res => {
-    //       app.globalData.userInfo = res.userInfo
-    //       this.setData({
-    //         userInfo: res.userInfo,
-    //         hasUserInfo: true
-    //       })
-    //     }
-    //   })
-    // }
   }
-  // getUserInfo: function(e) {
-  //   console.log(e)
-  //   app.globalData.userInfo = e.detail.userInfo
-  //   this.setData({
-  //     userInfo: e.detail.userInfo,
-  //     hasUserInfo: true
-  //   })
-  // }
 });

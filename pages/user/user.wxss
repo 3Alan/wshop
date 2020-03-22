@@ -37,7 +37,7 @@
   width: 180rpx;
 }
 .cell {
-  padding: 40rpx 0;
+  padding: 30rpx 0;
   border-bottom: 1rpx solid #f2f2f2;
   display: flex;
   justify-content: space-between;

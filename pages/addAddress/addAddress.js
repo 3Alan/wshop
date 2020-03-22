@@ -77,9 +77,7 @@ Page({
             content: Res.data.msg,
             showCancel: false,
           });
-          wx.redirectTo({
-            url: "/pages/addressList/addressList"
-          });
+          wx.navigateBack();
         }
         const { goodList } = Res.data;
         this.setData({
