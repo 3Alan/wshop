@@ -1,8 +1,9 @@
 <view class="page-container">
   <view class="container">
-    <text class="login-title">登录/注册</text>
+    <text class="login-title">登录</text>
     <input type="text" placeholder="用户名" data-key="username" bindinput="getInputStatus"/>
     <input type="text" password="{{true}}" placeholder="密码" data-key="password" bindinput="getInputStatus"/>
+    <view class="register" bindtap="goToRegister">注册账号</view>
     <view class="btn login-btn {{completeInput ? 'active' : ''}}" bindtap="{{completeInput ? 'login' : ''}}">登录</view>
   </view>
 </view>

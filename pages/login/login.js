@@ -25,6 +25,12 @@ Page({
     }
   },
 
+  goToRegister() {
+    wx.navigateTo({
+      url: '/pages/register/register',
+    });
+  },
+
   async login() {
     if(!this.data.completeInput) {
       wx.showModal({
@@ -46,7 +52,7 @@ Page({
         }
       });
       if (!(loginRes.statusCode === 200 && loginRes.data)) {
-        throw new errors.ValidateError('登录/注册失败');
+        throw new errors.ValidateError('登录失败');
       }
       wx.hideLoading();
       if (loginRes.data.code === '00001') {

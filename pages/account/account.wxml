@@ -1,0 +1,7 @@
+<view class="container">
+  <view class="content-container">
+    <view class="content-title">总金额（元）</view>
+    <view class="account">{{account}}.00</view>
+    <button class="btn recharge" bindtap="goToRecharge">充值</button>
+  </view>
+</view>

@@ -10,6 +10,7 @@ const GET_GOOD_COMMENT = '/good/get_good_comment';
 
 const WX_LOGIN = '/user/wechatLogin';
 const LOGIN = '/user/login';
+const REGISTER = '/user/register';
 const ADD_ADDRESS = '/user/add_address';
 const FIND_ADDRESS = '/user/find_address';
 const GET_ADDRESS_LIST = '/user/get_address_list';
@@ -29,6 +30,8 @@ const GET_COLLECTION_LIST = '/user/get_collection_list';
 const CANCEL_COLLECT = '/user/cancel_collect';
 const SAVE_HISTORY_SEARCH = '/user/save_history_search';
 const DELETE_HISTORY = '/user/delete_history';
+const RECHARGE = '/user/recharge';
+const CHECK_USER_NAME = '/user/check_user_name';
 
 
 const GET_HISTORY = '/user/get_history';
@@ -53,6 +56,9 @@ function wxLogin() {
 }
 function Login() {
   return `${HOST_URI}${LOGIN}`;
+}
+function register() {
+  return `${HOST_URI}${REGISTER}`;
 }
 function addAddress() {
   return `${HOST_URI}${ADD_ADDRESS}`;
@@ -111,6 +117,12 @@ function saveHistorySearch() {
 function deleteHistory() {
   return `${HOST_URI}${DELETE_HISTORY}`;
 }
+function recharge() {
+  return `${HOST_URI}${RECHARGE}`;
+}
+function checkUserName() {
+  return `${HOST_URI}${CHECK_USER_NAME}`;
+}
 
 
 function submitOrder() {
@@ -118,6 +130,7 @@ function submitOrder() {
 }
 
 module.exports.Login = Login;
+module.exports.register = register;
 module.exports.wxLogin = wxLogin;
 module.exports.addAddress = addAddress;
 module.exports.findAddress = findAddress;
@@ -140,6 +153,8 @@ module.exports.search = search;
 module.exports.saveHistorySearch = saveHistorySearch;
 module.exports.deleteHistory = deleteHistory;
 module.exports.getGoodComment = getGoodComment;
+module.exports.recharge = recharge;
+module.exports.checkUserName = checkUserName;
 
 module.exports.getGoodDetail = getGoodDetail;
 module.exports.getGoodList = getGoodList;

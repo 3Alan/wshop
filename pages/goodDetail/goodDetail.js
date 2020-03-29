@@ -58,6 +58,14 @@ Page({
     });
   },
 
+  previewDetail(e) {
+    const current = e.currentTarget.dataset.id;
+    wx.previewImage({
+      current: current,
+      urls: this.data.banner,
+    })
+  },
+
   async getGoodDetail() {
     const { goodId } = this.data;
     wx.showLoading({ title: "加载中..." });

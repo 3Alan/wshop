@@ -1,22 +1,33 @@
 <view class="container">
-  <view class="user-info">
-    <view class="avatar"><image src="../../images/avatar.png" /></view>
-    <view class="nick-name" wx:if="{{isLogin}}">{{username}}</view>
-    <view class="login" wx:if="{{!isLogin}}" bindtap="goToLogin">登录/注册</view>
+  <view class="user-module" wx:if="{{isLogin}}">
+    <view class="user-info">
+      <view class="avatar">
+        <image src="../../images/avatar.png" />
+      </view>
+      <view class="nick-name" wx:if="{{isLogin}}">{{username}}</view>
+    </view>
+    <view class="cell" bindtap="goToOrderList">
+      <text>订单中心</text>
+      <i class="icon icon-arrow"></i>
+    </view>
+    <view class="cell" bindtap="goToMyCollection">
+      <text>我的收藏</text>
+      <i class="icon icon-arrow"></i>
+    </view>
+    <view class="cell" bindtap="goToAddressList">
+      <text>地址管理</text>
+      <i class="icon icon-arrow"></i>
+    </view>
+    <view class="cell" bindtap="goToAccount">
+      <text>账户余额</text>
+      <i class="icon icon-arrow"></i>
+    </view>
+    <view class="btn logout" bindtap="logout" wx:if="{{isLogin}}">退出登录</view>
   </view>
-  <view class="cell" bindtap="goToOrderList">
-    <text>订单中心</text>
-    <i class="icon icon-arrow"></i>
-  </view>
-  <view class="cell" bindtap="goToMyCollection">
-    <text>我的收藏</text>
-    <i class="icon icon-arrow"></i>
-  </view>
-  <view class="cell" bindtap="goToAddressList">
-    <text>地址管理</text>
-    <i class="icon icon-arrow"></i>
-  </view>
-  <view class="btn logout" bindtap="logout" wx:if="{{isLogin}}">
-    退出登录
+  <view class="login-module" wx:if="{{!isLogin}}">
+    <view class="avatar">
+      <image src="../../images/avatar.png" />
+    </view>
+    <view class="btn login" bindtap="goToLogin">登录/注册</view>
   </view>
 </view>

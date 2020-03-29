@@ -1,0 +1,32 @@
+.container {
+  background: linear-gradient(top, var(--blue-color), #aeddf7);
+  background: -moz-linear-gradient(top, var(--blue-color), #aeddf7);
+  background: -webkit-linear-gradient(top, var(--blue-color), #aeddf7);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.content-container {
+  width: 86%;
+  background: #fff;
+  border-radius: 10rpx;
+  height: 50%;
+  margin-top: 100rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 28rpx;
+  padding: 100rpx;
+  box-sizing: border-box;
+  box-shadow: 0rpx 10rpx 15rpx #888;
+}
+.account {
+  margin-top: 50rpx;
+  font-size: 60rpx;
+  font-weight: bold;
+}
+.recharge {
+  width: 80%;
+  padding: 20rpx;
+  margin-top: 130rpx;
+}
