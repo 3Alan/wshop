@@ -14,7 +14,10 @@
     "pages/myCollection/myCollection",
     "pages/addressList/addressList",
     "pages/evaluate/evaluate",
-    "pages/commentList/commentList"
+    "pages/commentList/commentList",
+    "pages/account/account",
+    "pages/recharge/recharge",
+    "pages/register/register"
   ],
   "window": {
     "backgroundTextStyle": "light",

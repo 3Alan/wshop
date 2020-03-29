@@ -1,5 +1,6 @@
 .container {
   padding: 20rpx;
+  position: relative;
 }
 .user-info {
   display: flex;
@@ -15,21 +16,42 @@
   flex: 1;
 }
 .login {
-  flex: 1;
-  margin-left: 40rpx;
   display: flex;
   align-items: center;
+  padding: 30rpx;
+  color: #fff;
+  justify-content: center;
+  width: 80%;
 }
 .avatar {
+  box-sizing: border-box;
   width: 150rpx;
   height: 150rpx;
-  border: 1rpx solid var(--blue-color);
+  padding: 3rpx;
+  border: 2rpx solid var(--blue-color);
   border-radius: 50%;
+  overflow: hidden;
 }
 .avatar image {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
+}
+.login-module {
+  margin-top: 300rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.login-module .login {
+  width: 50%;
+}
+.login-module .avatar{
+  border: none;
+  width: 200rpx;
+  height: 200rpx;
+  box-shadow: 0 10rpx 30rpx var(--blue-color);
+  margin-bottom: 100rpx;
 }
 .user-homepage {
   display: flex;

@@ -32,9 +32,19 @@ Page({
   checkValidate() {
     const { receiver, tel, address, addressDetail } = this.data;
     const isValidate = receiver && tel && address && addressDetail;
+    if (!/^[1]([3-9])[0-9]{9}$/.test(tel)) {
+      // wx.showModal({
+      //   title: '提示',
+      //   content: '手机号有误，请检查！',
+      //   showCancel: false,
+      // });
+      this.data.tips = '手机号有误，请检查！';
+      return ;
+    }
     this.setData({
       isValidate,
     });
+    this.data.tips = '填先完成再进行保存！';
   },
 
   async saveAddress() {
@@ -96,7 +106,7 @@ Page({
     } else {
       wx.showModal({
         title: '提示',
-        content: '填写完成再进行保存',
+        content: this.data.tips,
         showCancel: false,
       });
     }

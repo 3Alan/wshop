@@ -1,0 +1,13 @@
+<view class="page-container">
+  <view class="content-container">
+    <view class="title">输入金额（元）</view>
+    <view class="price">
+      <view class="price-symbol">￥</view>
+      <input type="number" bindinput="inputEvent" data-key="price"/>
+    </view>
+    <view class="password">
+      <text>登录密码：</text><input type="password" bindinput="inputEvent" data-key="password"/>
+    </view>
+  </view>
+  <button class="btn recharge" disabled="{{!rechargeAble}}" bindtap="recharge">充值</button>
+</view>

@@ -40,6 +40,11 @@ Page({
       url: '/pages/addressList/addressList',
     });
   },
+  goToAccount() {
+    wx.navigateTo({
+      url: '/pages/account/account',
+    });
+  },
 
   /**
    * 生命周期函数--监听页面加载

@@ -70,9 +70,15 @@
       <button class="btn submit-order" wx:if="{{orderDetail.status === 1}}" bindtap="checkUserAccount">
         支付
       </button>
-      <button class="btn submit-order" wx:if="{{orderDetail.status === 2}}" bindtap="delivery">催发货</button>
-      <button class="btn submit-order" wx:if="{{orderDetail.status === 3}}" bindtap="confirmReceiving">确认收货</button>
-      <button class="btn submit-order" wx:if="{{orderDetail.status === 4}}" bindtap="evaluate">评价</button>
+      <button class="btn submit-order" wx:if="{{orderDetail.status === 2}}" bindtap="delivery">
+        催发货
+      </button>
+      <button class="btn submit-order" wx:if="{{orderDetail.status === 3}}" bindtap="confirmReceiving">
+        确认收货
+      </button>
+      <button class="btn submit-order" wx:if="{{orderDetail.status === 4}}" bindtap="evaluate">
+        评价
+      </button>
       <view class="order-status" wx:if="{{orderDetail.status === 5}}">订单已完成</view>
       <view class="order-status" wx:if="{{orderDetail.status === 6}}">订单已取消</view>
     </view>
@@ -86,7 +92,7 @@
     <view class="modal-content">
       <view class="modal-cell">
         <view class="title">余额</view>
-        <view class="content">￥{{balance}}</view>
+        <view class="content">￥{{balance || 0}}</view>
       </view>
       <view class="modal-cell">
         <view class="title">需要支付</view>
@@ -94,8 +100,11 @@
       </view>
       <view class="tips" wx:if="{{needRecharge}}">您的账户余额不足，请联系管理员进行充值</view>
       <view class="operation">
-        <view class="operation-btn {{needRecharge ? 'disabled' : ''}}" bindtap="{{needRecharge ? '' : 'goToPay'}}">
+        <view class="operation-btn" wx:if="{{!needRecharge}}" bindtap="goToPay">
           确认支付
+        </view>
+        <view class="operation-btn" wx:if="{{needRecharge}}" bindtap="goToRecharge">
+          去充值
         </view>
       </view>
     </view>

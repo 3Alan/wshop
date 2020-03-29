@@ -21,7 +21,7 @@ Page({
       },
       {
         image_url:
-          "https://c.static-nike.com/a/images/f_auto/q_auto/t_PDP_864_v1/3d8a6abb-cdc3-4465-9944-03b8f3abeec4/air-zoom-unvrs-%E7%94%B7-%E5%A5%B3%E7%AF%AE%E7%90%83%E9%9E%8B-DHjqTK.jpg",
+          "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/2329cd93-f07e-4a99-b813-6c06f96787c3/kyrie-6-ep-%E7%94%B7%E5%AD%90%E7%AF%AE%E7%90%83%E9%9E%8B-BHC4Tl.jpg",
         id: 3
       }
     ],

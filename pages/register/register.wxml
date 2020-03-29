@@ -1,0 +1,11 @@
+<view class="page-container">
+  <view class="container">
+    <text class="register-title">注册</text>
+    <input type="text" placeholder="用户名" data-key="username" bindblur="checkUserName" bindinput="getInputStatus"/>
+    <text wx:if="{{userExit}}" class="tips">该用户名已被注册！</text>
+    <input type="text" password="{{true}}" placeholder="密码" data-key="password" bindinput="getInputStatus"/>
+    <input type="text" password="{{true}}" placeholder="确认密码" data-key="repassword" bindinput="getInputStatus"/>
+    <text wx:if="{{passwordTips}}" class="tips">两次输入的密码不一致！</text>
+    <view class="btn register-btn {{completeInput ? 'active' : ''}}" bindtap="{{completeInput ? 'register' : ''}}">注册</view>
+  </view>
+</view>

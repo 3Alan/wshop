@@ -17,7 +17,7 @@
           <image src="../../images/avatar.png" />
         </view>
         <view class="username-info">
-          <view class="username">{{item.username}}</view>
+          <view class="username">{{item.username[0]}}****</view>
           <view class="comment-time">{{item.time}}</view>
         </view>
         <i class="icon {{item.comment_type ? 'icon-smile' : 'icon-frown'}}"></i>
