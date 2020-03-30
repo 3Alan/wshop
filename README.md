@@ -1,6 +1,7 @@
 # whop
 毕业设计，商城类小程序
 #### 接口地址：<https://github.com/3Alan/wshopApi>
+```
 wshop
  ├── app.js
  ├── app.json
@@ -46,3 +47,4 @@ wshop
      ├── api.js
      ├── error.js
      └── util.js
+```
