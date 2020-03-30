@@ -98,7 +98,7 @@
         <view class="title">需要支付</view>
         <view class="content price">￥{{goodDetail.price}}</view>
       </view>
-      <view class="tips" wx:if="{{needRecharge}}">您的账户余额不足，请联系管理员进行充值</view>
+      <view class="tips" wx:if="{{needRecharge}}">您的账户余额不足，请进行充值</view>
       <view class="operation">
         <view class="operation-btn" wx:if="{{!needRecharge}}" bindtap="goToPay">
           确认支付

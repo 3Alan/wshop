@@ -11,7 +11,8 @@ Page({
   data: {
     showPayModal: false,
     needRecharge: false,
-    statusEnum: ["待付款", "代发货", "待收货", "待评价", "已完成"]
+    statusEnum: ["待付款", "代发货", "待收货", "待评价", "已完成"],
+    goToRecharge: false,
   },
 
   addAddress() {
@@ -64,6 +65,15 @@ Page({
         duration: 2000
       });
     }
+  },
+
+  goToRecharge() {
+    this.setData({
+      goToRecharge: true,
+    });
+    wx.navigateTo({
+      url: '/pages/recharge/recharge',
+    });
   },
 
   async checkUserAccount() {
@@ -322,6 +332,9 @@ Page({
   async onShow() {
     if (this.data.addAddress) {
       await this.getUserInfo();
+    }
+    if (this.data.goToRecharge) {
+      await this.checkUserAccount();
     }
   }
 });
