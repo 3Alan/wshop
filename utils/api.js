@@ -1,5 +1,6 @@
-const HOST_URI = 'http://192.168.1.20:8888';
+// const HOST_URI = 'http://192.168.1.20:8888';
 // const HOST_URI = 'http://hello.shenzhuo.vip:10468';
+const HOST_URI = 'https://wshop.utools.club';
 
 
 const GOOD_DETAIL = '/good/goodDetail';
