@@ -109,6 +109,10 @@ Page({
 
   async goToPay() {
     wx.showLoading({ title: "加载中..." });
+    const touser = wx.getStorageSync('openid');
+    const access_token = wx.getStorageSync('access_token');
+    const tempId = 'r4BVJzOemKt4PvrtSGawc0DiSePegY7APC1T8D-3xjE';
+    await app.subscribeSubject([tempId]);
     try {
       const Res = await wx.request({
         url: Api.payForOrder(),
@@ -116,14 +120,17 @@ Page({
         method: "POST",
         data: {
           orderId: this.data.orderDetail.orderId,
-          orderPrice: this.data.goodDetail.price
+          orderPrice: this.data.goodDetail.price,
+          touser,
+          access_token,
+          template_id: tempId
         }
       });
       if (!(Res.statusCode === 200 && Res.data)) {
         throw new errors.ValidateError("支付失败");
       }
       wx.hideLoading();
-      const { orderStatus, msg } = Res.data;
+      const { orderStatus } = Res.data;
       this.setData({
         "orderDetail.status": orderStatus,
         showPayModal: false

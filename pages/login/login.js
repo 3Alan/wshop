@@ -1,6 +1,8 @@
 const wx = require('../../lib/wx');
 const Api = require('../../utils/api');
 
+const app = getApp();
+
 Page({
 
   /**
@@ -31,6 +33,26 @@ Page({
     });
   },
 
+  async wxLogin() {
+    const res = await wx.login();
+    if (res.code) {
+      //发起网络请求
+      const loginRes = await wx.request({
+        url: Api.wxLogin(),
+        method: 'POST',
+        data: {
+          code: res.code
+        }
+      });
+      if(loginRes.statusCode === 200){
+        wx.setStorageSync('openid', loginRes.data.openid);
+        wx.setStorageSync('access_token', loginRes.data.access_token);
+      }
+    } else {
+      throw new errors.ValidateError('微信授权失败！');
+    }
+  },
+
   async login() {
     if(!this.data.completeInput) {
       wx.showModal({
@@ -40,7 +62,7 @@ Page({
       });
     }
     const { username, password } = this.data;
-
+    await this.wxLogin();
     wx.showLoading({ title: '登录中...' });
     try {
       const loginRes = await wx.request({
